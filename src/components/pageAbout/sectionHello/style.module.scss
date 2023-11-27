@@ -5,6 +5,7 @@
     flex-direction: column;
     padding-top: 40px;
     padding-bottom: 40px;
+    gap: 16px;
 
     & .hello {}
 
@@ -14,7 +15,6 @@
         align-items: center;
         justify-content: center;
         gap: 16px;
-        margin-top: 16px;
 
         & h1 {
             color: #FFF;
@@ -74,12 +74,32 @@
     & .custom {
         display: flex;
         gap: 4px;
-        align-items: center;
+        text-align: center;
+        // align-items: center;
     }
 }
 
 @media (min-width: 767px) {
     .sectionHello {
+        gap: 32px;
+        & .helloLetsgo {
+            width: calc(100% - 200px);
+            gap: 24px;
+            & h1 {
+                font-size: 32px;
+            }
+
+            & p {
+                font-size: 20px;
+            }
+        }
+
+        & .buttons {
+            & p {
+                font-size: 16px !important;
+            }
+        }
+
         & .helloImg {
             width: 593px;
             height: auto;

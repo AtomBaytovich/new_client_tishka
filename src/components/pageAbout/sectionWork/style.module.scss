@@ -25,7 +25,7 @@
 
         & img {
             width: 288px;
-            height: 274px;
+            height: auto;
         }
     }
 
@@ -76,6 +76,25 @@
                 font-weight: 400;
                 line-height: 24px;
             }
+        }
+    }
+}
+
+@media only screen and (min-width: 767px) {
+    .work .title p {
+        font-size: 24px;
+    }
+
+    .work .mediaTI {
+        & img {
+            width: 483px;
+            height: auto;
+        }
+    }
+
+    .work .listMy {
+        & li {
+            font-size: 20px;
         }
     }
 }

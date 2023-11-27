@@ -56,3 +56,21 @@
         padding: 6px 12px;
     }
 }
+
+@media (min-width: 767px) {
+    .purpose .title {
+        font-size: 24px;
+    }
+
+    .purpose .answer {
+        font-size: 20px;
+    }
+
+    .purpose .text {
+        font-size: 20px;
+    }
+
+    .purpose .buttonsOne {
+        font-size: 20px;
+    }
+}

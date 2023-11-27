@@ -14,6 +14,7 @@
         font-style: normal;
         font-weight: 900;
         line-height: normal;
+        cursor: pointer;
     }
 
     & .links {
@@ -27,11 +28,16 @@
         display: none;
     }
 
+    .title {
+        font-size: 24px !important;
+    }
+
     .links {
         display: flex !important;
         gap: 16px;
 
         & li {
+            cursor: pointer;
             color: #FFF;
             font-family: Montserrat Alternates;
             font-size: 21px;

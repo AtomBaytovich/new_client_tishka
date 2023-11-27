@@ -54,3 +54,21 @@
         }
     }
 }
+
+@media (min-width: 767px) {
+    .whatP p {
+        font-size: 24px;
+    }
+
+    .card {
+        gap: 16px !important;
+
+        & p {
+            font-size: 20px !important;
+        }
+    }
+
+    .whatTwo {
+        font-size: 20px !important;
+    }
+}
