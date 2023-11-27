@@ -8,7 +8,7 @@ export const SectionHello = () => {
             <div className={style.hello}>
                 <div className={style.helloLetsgo}>
                     <div className={`${style.custom} helloLetsgo__container`}>
-                        <h1>Делись своими чувствами и эмоциями здесь</h1>
+                        <h1>Делись своими чувствами и эмоциями здесь ❤️</h1>
                     </div>
                     <p className="helloLetsgo__container">Проект создан с трепетом и любовью для тебя!</p>
                     <div className={style.custom}>

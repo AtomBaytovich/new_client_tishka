@@ -29,5 +29,15 @@
 
     .links {
         display: flex !important;
+        gap: 16px;
+
+        & li {
+            color: #FFF;
+            font-family: Montserrat Alternates;
+            font-size: 21px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
     }
 }

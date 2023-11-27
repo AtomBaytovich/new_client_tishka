@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 570px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 
     & .hello {}
 
@@ -41,6 +42,7 @@
         justify-content: center;
         gap: 18px;
         margin-top: 20px;
+
         & .buttonsOne {
             color: #504F75;
             text-align: center;
@@ -66,12 +68,21 @@
 
     & .helloImg {
         width: 337px;
-        height: 280px;
+        height: auto;
     }
 
     & .custom {
         display: flex;
         gap: 4px;
         align-items: center;
+    }
+}
+
+@media (min-width: 767px) {
+    .sectionHello {
+        & .helloImg {
+            width: 593px;
+            height: auto;
+        }
     }
 }
