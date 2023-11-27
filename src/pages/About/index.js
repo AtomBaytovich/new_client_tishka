@@ -1,3 +1,4 @@
+import { Footer } from "../../components/footer";
 import { Header } from "../../components/header";
 import { SectionHello } from "../../components/pageAbout/sectionHello";
 import { SectionPurpose } from "../../components/pageAbout/sectionPurpose";
@@ -15,6 +16,7 @@ export const PageAbout = () => {
       <SectionWhat />
       <SectionWork />
       <SectionPurpose />
+      <Footer />
     </div>
   );
 };

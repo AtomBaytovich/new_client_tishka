@@ -1,0 +1,18 @@
+footer {
+    display: block;
+    height: 210px;
+    align-items: center;
+    flex-shrink: 0;
+    background: #5D6887;
+
+    & p {
+        padding-left: 40px;
+        padding-top: 40px;
+        color: #FFF;
+        font-family: Montserrat Alternates;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+}
