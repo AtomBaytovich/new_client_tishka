@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
+
+    & .title {
+        color: #fff;
+        text-align: center;
+        font-family: Montserrat Alternates;
+        font-size: 21px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+
+    & .links {
+        display: none;
+    }
+}
+
+
+@media (min-width: 767px) {
+    .burger {
+        display: none;
+    }
+
+    .links {
+        display: flex !important;
+    }
+}

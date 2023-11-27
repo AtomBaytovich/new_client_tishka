@@ -1,0 +1,56 @@
+.whatP {
+    margin-top: 20px;
+}
+
+.whatP p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat Alternates;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.whatTwo {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat Alternates;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.cards {
+    margin-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+
+    & .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+
+        & img {
+            width: 41px;
+        }
+
+        & p {
+            color: #FFF;
+            text-align: center;
+            font-family: Montserrat Alternates;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px;
+        }
+    }
+}

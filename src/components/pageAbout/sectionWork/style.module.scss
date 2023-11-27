@@ -1,0 +1,81 @@
+.work {
+    background-color: #5D6887;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    & .title p {
+        margin-top: 16px;
+        color: #FFF;
+        text-align: center;
+        font-family: Montserrat Alternates;
+        font-size: 19px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    & .mediaTI {
+        border-radius: 30px;
+        background: #383752;
+        box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.28);
+        padding: 16px;
+
+        & img {
+            width: 288px;
+            height: 274px;
+        }
+    }
+
+    .listMy {
+        text-align: center;
+
+        & li {
+            margin-top: 10px;
+            color: #FFF;
+            font-family: Montserrat Alternates;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 24px;
+        }
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 32px;
+
+        & .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Montserrat Alternates;
+            gap: 8px;
+
+            & p:first-child {
+                color: #FFF;
+                text-align: right;
+                font-size: 40px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 24px;
+            }
+
+            & p:last-child {
+                color: #FFF;
+                text-align: right;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+            }
+        }
+    }
+}
