@@ -3,7 +3,7 @@ import style from "./style.module.scss";
 
 export const SectionWhat = () => {
     return (
-        <section className="">
+        <section className={style.sectionWhat}>
             <div className={style.whatP}>
                 <p>Что это за проект?</p>
             </div>

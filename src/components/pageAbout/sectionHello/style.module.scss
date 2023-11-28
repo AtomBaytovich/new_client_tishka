@@ -3,8 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 32px 0px;
     gap: 16px;
 
     & .hello {}
@@ -15,10 +14,11 @@
         align-items: center;
         justify-content: center;
         gap: 16px;
+        text-align: center;
 
         & h1 {
             color: #FFF;
-            text-align: center;
+            // text-align: center;
             font-family: Montserrat Alternates;
             font-size: 20px;
             font-style: normal;
@@ -28,7 +28,7 @@
 
         & p {
             color: #FFF;
-            text-align: center;
+            // text-align: center;
             font-family: Montserrat Alternates;
             font-size: 16px;
             font-style: normal;
@@ -82,9 +82,11 @@
 @media (min-width: 767px) {
     .sectionHello {
         gap: 32px;
+
         & .helloLetsgo {
             width: calc(100% - 200px);
             gap: 24px;
+
             & h1 {
                 font-size: 32px;
             }
@@ -103,6 +105,18 @@
         & .helloImg {
             width: 593px;
             height: auto;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .sectionHello {
+        padding: 48px 0px;
+        flex-direction: row-reverse;
+        padding-bottom: 0px;
+
+        & .helloLetsgo {
+            width: 550px;
         }
     }
 }

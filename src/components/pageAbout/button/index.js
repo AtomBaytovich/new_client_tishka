@@ -1,8 +1,8 @@
 import style from "./style.module.scss"
 
-export const Button = ({ children, backgroundColor = "#FFF" }) => {
+export const Button = ({ children, backgroundColor = "#FFF", styles = {} }) => {
     return (
-        <div style={{ backgroundColor }} className={style.button}>
+        <div style={{ backgroundColor, ...styles }} className={`${style.button}`}>
             {children}
         </div>
     )

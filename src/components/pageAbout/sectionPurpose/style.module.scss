@@ -1,14 +1,20 @@
-.purpose {
+.sectionPurpose {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: Montserrat Alternates;
 
-    padding-bottom: 32px;
+    padding: 32px 0px;
+
+    & .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
     & .title {
-        margin-top: 26px;
         color: #FFF;
         text-align: center;
         font-size: 19px;
@@ -18,6 +24,7 @@
     }
 
     & .answer {
+        padding: 0px 20px;
         margin-top: 16px;
         color: #FFF;
         text-align: center;
@@ -25,6 +32,10 @@
         font-style: normal;
         font-weight: 600;
         line-height: 30px;
+    }
+
+    & .answerPk {
+        display: none;
     }
 
     & .volodyaTop {
@@ -55,22 +66,69 @@
         line-height: 24px;
         padding: 6px 12px;
     }
+    .custom { 
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 767px) {
-    .purpose .title {
+    .sectionPurpose .title {
         font-size: 24px;
     }
 
-    .purpose .answer {
+    .sectionPurpose .answer {
         font-size: 20px;
     }
 
-    .purpose .text {
+    .sectionPurpose .text {
         font-size: 20px;
     }
 
-    .purpose .buttonsOne {
+    .sectionPurpose .buttonsOne {
         font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .custom {
+        margin: 0px;
+    }
+    .sectionPurpose {
+        padding: 48px 0px;
+
+        .answerPk {
+            display: block;
+        }
+
+        & .answer {
+            padding: 0px;
+            text-align: left;
+            margin-top: 0px;
+            max-width: 680px;
+        }
+
+        & .text {
+            padding: 0px;
+            text-align: left;
+            max-width: 680px;
+        }
+
+        & .volodyaTop {
+            margin: 0px;
+        }
+
+        & .container {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+            margin-top: 32px;
+            align-items: center;
+            justify-content: center;
+
+            & .answerMob {
+                display: none;
+            }
+        }
     }
 }
