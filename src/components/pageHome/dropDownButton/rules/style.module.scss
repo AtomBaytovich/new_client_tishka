@@ -1,0 +1,76 @@
+.rulesTV {
+    margin-top: 8px;
+    border-radius: 15px;
+    height: 190px;
+    background: #383752;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    display: flex;
+    align-items: end;
+    justify-content: center;
+
+    & img {
+        width: 190px;
+        height: fit-content;
+    }
+}
+
+.rules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    border-radius: 15px;
+    width: 100%;
+    background: #383752;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    & .ruleElements {
+        width: 100%;
+
+        & .element:hover {
+            background-color: #5E5D88;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        & .element {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+
+            & img {
+                width: 32px;
+                height: fit-content;
+            }
+
+            & p {
+                width: 235px;
+                color: #FFF;
+                font-family: Montserrat Alternates;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+        }
+    }
+
+    & .ruleLearn {
+        cursor: pointer;
+        color: #75BD4E;
+        font-family: Verdana;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        &:hover {
+            color: #5c913f;
+        }
+    }
+}

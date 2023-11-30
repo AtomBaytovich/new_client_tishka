@@ -10,7 +10,7 @@ export const PageAbout = () => {
   return (
     <div className={style.wrapper}>
       <div className={style.sectionCustom}>
-        <Header />
+        <Header backgroundColor="rgba(0,0,0,0.0)"/>
         <SectionHello />
       </div>
       <SectionWhat />

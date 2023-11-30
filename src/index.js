@@ -3,16 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import { PageAbout } from "./pages/About";
+import { PageHome } from "./pages/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div>
-        <h1>Hello World</h1>
-        <Link to="about">About Us</Link>
-      </div>
-    ),
+    element: <PageHome />,
   },
   {
     path: "about",
