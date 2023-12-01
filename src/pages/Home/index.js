@@ -1,6 +1,8 @@
 import { Header } from "../../components/header";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
+import { SearchInput } from "../../components/pageHome/seacrhInput";
+import { WriteButton } from "../../components/pageHome/writeButton";
 import style from "./style.module.scss";
 
 const dataRatingUser = [
@@ -20,8 +22,20 @@ export const PageHome = () => {
     return (
         <div className={style.wrapper}>
             <Header />
-            <RulesDropDown />
-            <TopDropDown data={dataRatingUser} />
+            <div className={style.honey}>
+                {/* <div style={{gridArea: "q"}}> */}
+                <RulesDropDown />
+                {/* </div> */}
+                {/* <div style={{gridArea: "z"}}> */}
+                <TopDropDown data={dataRatingUser} />
+                {/* </div> */}
+                <div className={style.lenta} /*style={{gridArea: "a"}}*/>
+                    <div className={style.searchWriteBar}>
+                        <SearchInput />
+                        <WriteButton />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

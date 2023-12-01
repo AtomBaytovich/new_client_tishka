@@ -1,0 +1,42 @@
+.seacrh {
+    display: flex;
+    justify-content: space-around;
+    width: 232px;
+    height: 38px;
+
+    & input {
+        border-radius: 15px 0px 0px 15px;
+        background: #383752;
+        width: 100%;
+        padding-left: 8px;
+
+        color: #FFF;
+        font-family: Montserrat Alternates;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+
+        &::placeholder {
+            color: #FFF;
+            font-family: Montserrat Alternates;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+    }
+
+
+
+    & .searchIcon {
+        cursor: pointer;
+        background: #242437;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: auto;
+        border-radius: 0px 15px 15px 0px;
+    }
+}

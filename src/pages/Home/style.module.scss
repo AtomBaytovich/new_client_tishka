@@ -1,0 +1,50 @@
+.honey {
+
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+
+
+    & .lenta {
+        z-index: 1;
+    }
+}
+
+.searchWriteBar {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media (min-width: 768px) {
+    .honey {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+
+        & .lenta {
+            grid-area: 2 / 1 / 3 / 3;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .honey {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+
+        & .lenta {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+    }
+
+}
