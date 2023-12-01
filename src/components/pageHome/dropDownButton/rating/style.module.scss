@@ -1,0 +1,43 @@
+.rating {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+    padding: 16px;
+    background: #383752;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.28));
+    border-radius: 15px;
+}
+
+.stringRating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 15px 5px 5px 15px;
+    background: linear-gradient(91deg, #242437 4.66%, #242437 100%);
+    position: relative;
+
+    & .avatar {
+        & .first {
+            position: absolute;
+            top: -20px;
+            transform: rotate(0.98turn);
+            left: -11px;
+            z-index: 10;
+        }
+
+        & img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    & p {
+        color: #FFF;
+        font-family: Montserrat Alternates;
+        font-size: 17px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+}

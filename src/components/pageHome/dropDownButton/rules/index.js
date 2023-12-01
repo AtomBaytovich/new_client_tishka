@@ -3,7 +3,7 @@ import style from "./style.module.scss";
 
 export const RulesDropDown = () => {
     return (
-        <DropDownButton>
+        <DropDownButton text={"Важные правила"}>
             <div className={style.rulesTV}>
                 <img src="./assets/main/rules.png" alt="Тишка в телеке" />
             </div>
