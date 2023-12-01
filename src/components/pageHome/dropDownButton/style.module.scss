@@ -1,9 +1,8 @@
 .mainDrop {
-    width: 321px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    margin-top: 24px;
+    // margin: auto;
 
     & .button {
         cursor: pointer;

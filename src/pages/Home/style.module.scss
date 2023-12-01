@@ -1,11 +1,14 @@
 .honey {
-
+    margin-top: 20px;
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
+    // grid-template-rows: repeat(3, 1fr);
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 16px;
+
+    padding-left: 20px;
+    padding-right: 20px;
 
 
     & .lenta {
@@ -24,8 +27,11 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
+        grid-row-gap: 16px;
+        grid-column-gap: 120px;
+
+        padding-left: 40px;
+        padding-right: 40px;
 
         & .lenta {
             grid-area: 2 / 1 / 3 / 3;
@@ -37,13 +43,34 @@
 
     .honey {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 25% 50% 25%;
         grid-template-rows: 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
 
+        padding-left: 16px;
+        padding-right: 16px;
+
         & .lenta {
             grid-area: 1 / 2 / 2 / 3;
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+    }
+
+}
+
+@media (min-width: 1440px) {
+    .honey {
+        padding-left: 88px;
+        padding-right: 88px;
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        
+        &  .lenta {
+            margin-left: 24px;
+            margin-right: 24px;
         }
     }
 

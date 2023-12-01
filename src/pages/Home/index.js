@@ -1,4 +1,5 @@
 import { Header } from "../../components/header";
+import { SectionPurpose } from "../../components/pageAbout/sectionPurpose";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
 import { SearchInput } from "../../components/pageHome/seacrhInput";
@@ -34,6 +35,7 @@ export const PageHome = () => {
                         <SearchInput />
                         <WriteButton />
                     </div>
+                    {/* <SectionPurpose /> */}
                 </div>
             </div>
         </div>
