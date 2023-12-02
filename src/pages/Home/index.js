@@ -3,7 +3,7 @@ import { Mopik } from "../../components/mopik";
 import { SectionPurpose } from "../../components/pageAbout/sectionPurpose";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
-import { SearchInput } from "../../components/pageHome/seacrhInput";
+import { SearchInput } from "../../components/seacrhInput";
 import { WriteButton } from "../../components/pageHome/writeButton";
 import style from "./style.module.scss";
 
@@ -25,13 +25,9 @@ export const PageHome = () => {
         <div className={style.wrapper}>
             <Header />
             <div className={style.honey}>
-                {/* <div style={{gridArea: "q"}}> */}
                 <RulesDropDown />
-                {/* </div> */}
-                {/* <div style={{gridArea: "z"}}> */}
                 <TopDropDown data={dataRatingUser} />
-                {/* </div> */}
-                <div className={style.lenta} /*style={{gridArea: "a"}}*/>
+                <div className={style.lenta}>
                     <div className={style.otboynik}>
                         <div className={style.searchWriteBar}>
                             <SearchInput />
@@ -42,6 +38,7 @@ export const PageHome = () => {
                                 id={1}
                                 title={"Как же хочется отдохнуть в Сибири"}
                                 text={`Однажды моя мама, живущая в сибирской деревне, решила уехать в город. Она собрала все свои вещи и поехала на поезде в далекий город. `}
+                                countView={458}
                             />
                         </div>
                     </div>

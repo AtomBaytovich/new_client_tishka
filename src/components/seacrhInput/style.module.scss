@@ -14,15 +14,21 @@
         font-family: Montserrat Alternates;
         font-size: 13px;
         font-style: normal;
-        font-weight: 700;
+        font-weight: 400;
         line-height: normal;
 
         &::placeholder {
-            color: #FFF;
+            // color: #FFF;
+            // font-family: Montserrat Alternates;
+            // font-size: 12px;
+            // font-style: normal;
+            // font-weight: 700;
+            // line-height: normal;
+            color: #A7A7A7;
             font-family: Montserrat Alternates;
-            font-size: 12px;
+            font-size: 14px;
             font-style: normal;
-            font-weight: 700;
+            font-weight: 400;
             line-height: normal;
         }
     }
