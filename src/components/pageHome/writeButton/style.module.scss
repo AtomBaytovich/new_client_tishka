@@ -1,13 +1,13 @@
 .written {
     border-radius: 10px;
     width: 80px;
-    height: 38px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
 
-    background: url(../../../../public/assets/td/starsWrite.png) no-repeat left top, linear-gradient(180deg, #82C34F 0%, rgba(61, 167, 73, 0.93) 99.95%, #504F75 99.96%, #504F75 99.97%, rgba(64, 120, 63, 0.00) 99.98%);
+    background: url(../../../../public/assets/td/starsWrite.png) no-repeat center, linear-gradient(180deg, #82C34F 0%, rgba(61, 167, 73, 0.93) 99.95%, #504F75 99.96%, #504F75 99.97%, rgba(64, 120, 63, 0.00) 99.98%);
 
     & p {
         color: #FFF;
@@ -16,5 +16,21 @@
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+    }
+
+    &:hover {
+        background: url(../../../../public/assets/td/starsWrite.png) no-repeat center, linear-gradient(180deg, #62913e 0%, rgba(61, 167, 73, 0.93) 99.95%, #504F75 99.96%, #504F75 99.97%, rgba(64, 120, 63, 0.00) 99.98%);
+
+    }
+}
+
+@media (min-width: 767px) {
+
+    .written {
+        width: 100px;
+
+        & p {
+            font-size: 14px;
+        }
     }
 }

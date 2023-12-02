@@ -16,6 +16,7 @@
     border-radius: 15px 5px 5px 15px;
     background: linear-gradient(91deg, #242437 4.66%, #242437 100%);
     position: relative;
+    cursor: pointer;
 
     & .avatar {
         & .first {
@@ -35,9 +36,22 @@
     & p {
         color: #FFF;
         font-family: Montserrat Alternates;
-        font-size: 17px;
+        font-size: 14px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
     }
+
+    &:hover {
+        background: linear-gradient(91deg, #525261 4.66%, #575791 100%);
+    }
+}
+
+@media (min-width: 767px) { 
+    .stringRating {
+        & p {
+            font-size: 17px;
+        }
+    }
+
 }

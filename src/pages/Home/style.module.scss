@@ -12,7 +12,9 @@
 
 
     & .lenta {
+        // margin: auto;
         z-index: 1;
+        max-width: 620px;
     }
 }
 
@@ -20,9 +22,13 @@
     display: flex;
     justify-content: center;
     gap: 8px;
+    height: 40px;
 }
 
 @media (min-width: 768px) {
+    .searchWriteBar {
+        height: 48px;
+    }
     .honey {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
