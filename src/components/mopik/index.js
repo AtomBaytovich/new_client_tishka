@@ -1,6 +1,7 @@
 import { useState } from "react";
 import style from "./style.module.scss";
 import { WriteCommentAndViews } from "./social";
+import { BlockAvatar } from "../blockAvatar";
 
 export const Mopik = ({ id, title, text, countLikes, countComment, countView }) => {
     const [nextView, setNextView] = useState(false)
@@ -40,7 +41,10 @@ export const Mopik = ({ id, title, text, countLikes, countComment, countView }) 
                     <p className={style.text}>{text}</p>
                 </div>
                 {nextView ? (
-                    <WriteCommentAndViews />
+                    <div className={style.social}>
+                        <BlockAvatar />
+                        <WriteCommentAndViews/>
+                    </div>
                 ) : undefined}
             </div>
             {nextView ? (

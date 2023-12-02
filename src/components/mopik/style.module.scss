@@ -3,21 +3,24 @@
     min-height: 70px;
     justify-content: space-between;
     user-select: none;
-    cursor: pointer;
+
     caret-color: transparent;
     -webkit-tap-highlight-color: transparent;
+
     & .data {
+        cursor: pointer;
         width: fit-content;
         // border-radius: 15px 0px 0px 15px;
         border-radius: 10px;
         background: #383752;
+        padding: 10px;
 
         & .written {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            padding: 10px;
-            
+            // padding: 10px;
+
 
             & .title {
                 color: #FFF;
@@ -37,6 +40,14 @@
                 line-height: 24px;
             }
         }
+
+        & .social {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
         & .next {
             color: #75BD4E;
             font-family: Verdana;
@@ -57,7 +68,7 @@
         justify-content: space-between;
         align-items: center;
         padding-top: 16px;
-        padding-bottom: 8px;
+        padding-bottom: 16px;
 
         & .like img {
             width: 25px;
@@ -70,12 +81,23 @@
         }
 
         & .views {
-            color: #FFF;
+            color: #B7B7BD;
             font-family: Verdana;
-            font-size: 14px;
+            font-size: 13px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 400;
             line-height: normal;
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    .mopik {
+        & .data{
+            & .social {
+                // margin-left: 30px;
+                // margin-right: 30px;
+            }
         }
     }
 }

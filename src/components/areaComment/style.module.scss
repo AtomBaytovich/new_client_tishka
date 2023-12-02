@@ -1,0 +1,82 @@
+.main {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    // height: 40px;
+
+    & .textareaElement {
+        border-radius: 15px 0px 0px 15px;
+        background: #383752;
+
+        width: 100%;
+        min-height: 20px;
+        max-height: 100px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 8px 16px;
+
+        color: #B7B7BD;
+        font-family: Verdana;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        caret-color: rgb(255 255 255);
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            color: white;
+            // background-color: white;
+        }        
+
+        &::placeholder {
+            color: #A7A7A7;
+            font-family: Montserrat Alternates;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+    }
+
+
+
+    & .searchIcon {
+        cursor: pointer;
+        caret-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+        background: #242437;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: auto;
+        border-radius: 0px 15px 15px 0px;
+
+        &:active {
+            background: #13132c;
+        }
+    }
+}
+
+@media (min-width: 767px) {
+
+    .seacrh {
+        & input {
+            font-size: 17px;
+            padding-left: 16px;
+
+            &::placeholder {
+                font-size: 16px;
+            }
+        }
+    }
+
+}
+
+[contenteditable=true]:empty:before {
+    content: attr(placeholder);
+    display: block;
+    color: #aaa;
+  }

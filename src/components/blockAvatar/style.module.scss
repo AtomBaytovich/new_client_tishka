@@ -1,0 +1,14 @@
+.avatar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    & p {
+        color: #B7B7BD;
+        font-family: Verdana;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+}
