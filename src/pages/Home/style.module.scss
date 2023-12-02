@@ -12,9 +12,19 @@
 
 
     & .lenta {
-        // margin: auto;
-        z-index: 1;
-        max-width: 620px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        & .otboynik {
+            
+            max-width: 620px;
+            & .list {
+                margin-top: 24px;
+            }
+        }
+
+
     }
 }
 
@@ -29,10 +39,11 @@
     .searchWriteBar {
         height: 48px;
     }
+
     .honey {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        // grid-template-rows: repeat(2, 1fr);
         grid-row-gap: 16px;
         grid-column-gap: 120px;
 
@@ -73,8 +84,8 @@
         max-width: 1440px;
         margin-left: auto;
         margin-right: auto;
-        
-        &  .lenta {
+
+        & .lenta {
             margin-left: 24px;
             margin-right: 24px;
         }

@@ -1,4 +1,5 @@
 import { Header } from "../../components/header";
+import { Mopik } from "../../components/mopik";
 import { SectionPurpose } from "../../components/pageAbout/sectionPurpose";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
@@ -31,11 +32,19 @@ export const PageHome = () => {
                 <TopDropDown data={dataRatingUser} />
                 {/* </div> */}
                 <div className={style.lenta} /*style={{gridArea: "a"}}*/>
-                    <div className={style.searchWriteBar}>
-                        <SearchInput />
-                        <WriteButton />
+                    <div className={style.otboynik}>
+                        <div className={style.searchWriteBar}>
+                            <SearchInput />
+                            <WriteButton />
+                        </div>
+                        <div className={style.list}>
+                            <Mopik
+                                id={1}
+                                title={"Как же хочется отдохнуть в Сибири"}
+                                text={`Однажды моя мама, живущая в сибирской деревне, решила уехать в город. Она собрала все свои вещи и поехала на поезде в далекий город. `}
+                            />
+                        </div>
                     </div>
-                    {/* <SectionPurpose /> */}
                 </div>
             </div>
         </div>

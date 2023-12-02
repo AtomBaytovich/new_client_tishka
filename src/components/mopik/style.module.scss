@@ -1,0 +1,70 @@
+.mopik {
+    display: flex;
+    min-height: 150px;
+    justify-content: space-between;
+
+    & .data {
+        width: fit-content;
+        border-radius: 15px 0px 0px 15px;
+        background: #383752;
+
+        & .written {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 8px;
+
+            & .title {
+                color: #FFF;
+                font-family: Verdana;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            & .text {
+                color: #B7B7BD;
+                font-family: Verdana;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+                /* 171.429% */
+            }
+
+        }
+    }
+
+    & .meta {
+        width: 37px;
+        height: auto;
+        border-radius: 0px 15px 15px 0px;
+        background: #27273A;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 16px;
+        padding-bottom: 8px;
+
+        & .like img {
+            width: 25px;
+            height: auto;
+        }
+
+        & .comment img {
+            width: 30px;
+            height: auto;
+        }
+
+        & .views {
+            color: #FFF;
+            font-family: Verdana;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+    }
+}
