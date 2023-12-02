@@ -1,0 +1,17 @@
+.comment {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background-color: rgb(39, 39, 58);
+    border-radius: 10px;
+
+    & p {
+        color: #B7B7BD;
+        font-family: Verdana;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
+}

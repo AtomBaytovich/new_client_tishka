@@ -2,8 +2,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    // height: 40px;
-
+    
     & .textareaElement {
         border-radius: 15px 0px 0px 15px;
         background: #383752;
@@ -79,4 +78,5 @@
     content: attr(placeholder);
     display: block;
     color: #aaa;
+    font-family: Verdana;
   }
