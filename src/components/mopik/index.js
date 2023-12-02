@@ -41,10 +41,13 @@ export const Mopik = ({ id, title, text, countLikes, countComment, countView }) 
                     <p className={style.text}>{text}</p>
                 </div>
                 {nextView ? (
-                    <div className={style.social}>
+                    <>
                         <BlockAvatar />
-                        <WriteCommentAndViews/>
-                    </div>
+                        <div className={style.social}>
+
+                            <WriteCommentAndViews />
+                        </div>
+                    </>
                 ) : undefined}
             </div>
             {nextView ? (
