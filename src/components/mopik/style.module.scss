@@ -1,18 +1,21 @@
 .mopik {
     display: flex;
-    min-height: 150px;
+    min-height: 70px;
     justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
 
     & .data {
         width: fit-content;
-        border-radius: 15px 0px 0px 15px;
+        // border-radius: 15px 0px 0px 15px;
+        border-radius: 10px;
         background: #383752;
 
         & .written {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            padding: 8px;
+            padding: 10px;
 
             & .title {
                 color: #FFF;
@@ -31,16 +34,14 @@
                 font-weight: 400;
                 line-height: 24px;
             }
-
-            & .next {
-                color: #75BD4E;
-                font-family: Verdana;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 24px;
-            }
-
+        }
+        & .next {
+            color: #75BD4E;
+            font-family: Verdana;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
         }
     }
 

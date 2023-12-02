@@ -1,9 +1,9 @@
 .rating {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
     margin-top: 8px;
-    padding: 16px;
+    padding: 20px;
     background: #383752;
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.28));
     border-radius: 15px;
@@ -48,6 +48,10 @@
 }
 
 @media (min-width: 767px) { 
+    .rating {
+        gap: 16px;
+        padding: 16px;
+    }
     .stringRating {
         & p {
             font-size: 17px;
