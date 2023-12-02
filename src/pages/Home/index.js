@@ -1,11 +1,11 @@
 import { Header } from "../../components/header";
 import { Mopik } from "../../components/mopik";
-import { SectionPurpose } from "../../components/pageAbout/sectionPurpose";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
 import { SearchInput } from "../../components/seacrhInput";
 import { WriteButton } from "../../components/pageHome/writeButton";
 import style from "./style.module.scss";
+import { Footer } from "../../components/footer";
 
 const dataRatingUser = [
     { name: "немо 3", id: 3, isFirst: true, avatar: "" },
@@ -43,13 +43,13 @@ export const PageHome = () => {
                             <Mopik
                                 id={2}
                                 title={"Как же хочется отдохнуть в Сибири"}
-                                text={`Однажды моя мама, живущая в сибирской деревне, решила уехать в город. Она собрала все свои вещи и поехала на поезде в далекий город. `}
+                                text={`Он обошел вокруг избушки, зачем-то потрогал рукой углы и полез на чердак, подправил съехавшие в сторону пластушины корья на крыше. Спустившись по дряхлой лестнице, он тщательно отряхнул штаны, высморкался и разъяснил рыбакам, что избушка подходящая, что в ней можно спокойно ждать осеннюю путину, а пока вести промысел паромами и переметами. Лодки же, невода, плавные сети и всю прочую снасть надобно как следует подготовить к большому ходу рыбы. Потянулись однообразные дни. Рыбаки чинили невода, конопатили лодки, изготовляли якорницы, вязали, смолили.`}
                                 countView={458}
                             />
                             <Mopik
                                 id={3}
-                                title={"Как же хочется отдохнуть в Сибири"}
-                                text={`Однажды моя мама, живущая в сибирской деревне, решила уехать в город. Она собрала все свои вещи и поехала на поезде в далекий город. `}
+                                title={"а как без темы..."}
+                                text={`Хотел бы я стать богатым и успешным... но всё так сложно... приходится пахать и так далее....`}
                                 countView={458}
                             />
                             <Mopik
@@ -62,6 +62,7 @@ export const PageHome = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
