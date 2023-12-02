@@ -17,6 +17,8 @@
     background: linear-gradient(91deg, #242437 4.66%, #242437 100%);
     position: relative;
     cursor: pointer;
+    caret-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 
     & .avatar {
         & .first {

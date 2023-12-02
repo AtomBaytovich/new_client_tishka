@@ -37,6 +37,8 @@
 
     & .searchIcon {
         cursor: pointer;
+        caret-color: transparent;
+        -webkit-tap-highlight-color: transparent;
         background: #242437;
         display: flex;
         align-items: center;
@@ -44,6 +46,10 @@
         width: 48px;
         height: auto;
         border-radius: 0px 15px 15px 0px;
+
+        &:active {
+            background: #13132c;
+        }
     }
 }
 

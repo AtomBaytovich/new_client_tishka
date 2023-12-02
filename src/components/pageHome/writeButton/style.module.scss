@@ -6,6 +6,8 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    caret-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 
     background: url(../../../../public/assets/td/starsWrite.png) no-repeat center, linear-gradient(180deg, #82C34F 0%, rgba(61, 167, 73, 0.93) 99.95%, #504F75 99.96%, #504F75 99.97%, rgba(64, 120, 63, 0.00) 99.98%);
 
