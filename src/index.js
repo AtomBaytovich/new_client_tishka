@@ -4,6 +4,7 @@ import "./index.scss";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import { PageAbout } from "./pages/About";
 import { PageHome } from "./pages/Home";
+import { AuthModule } from "./components/Auth";
 
 const router = createBrowserRouter([
   {
@@ -20,5 +21,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <AuthModule />
   </React.StrictMode>
 );
