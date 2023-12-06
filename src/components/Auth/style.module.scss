@@ -32,6 +32,24 @@
         position: absolute;
         right: 16px;
         top: 16px;
+        cursor: pointer;
+
+        &:hover {
+            animation-name: rotateAnimation;
+            animation-duration: 0.1s;
+            animation-fill-mode: forwards;
+            animation-timing-function: linear;
+        }
+
+        @keyframes rotateAnimation {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(90deg);
+            }
+        }
     }
 
     & .mode {
@@ -97,6 +115,15 @@
     gap: 16px;
     margin-top: 8px;
 
+    .modeP {
+        color: #FFF;
+        font-family: Montserrat Alternates;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+    }
+
     & .button {
         display: flex;
         align-items: center;
@@ -161,6 +188,28 @@
             line-height: normal;
         }
     }
+}
 
+@media (min-width: 767px) {
+    .main {
+        padding: 0px;
+        flex-direction: row;
+
+        & .mode {
+            padding: 16px;
+            background: #65A455;
+            border-radius: 15px 0px 0px 15px;
+
+            & img {
+                width: 250px;
+            }
+        }
+    }
+
+    .form {
+        gap: 22px;
+        padding: 16px;
+        // padding-left: 0px;
+    }
 
 }

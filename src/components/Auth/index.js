@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import style from "./style.module.scss";
 import { CloseEmoji } from "../assets/emoji/close";
 import { useFormik } from "formik";
-import { InvisibleSmartCaptcha, SmartCaptcha } from '@yandex/smart-captcha';
+import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
+import { AuthContext } from "../../api/context/auth";
 
 const sitekey = "ysc1_nv8XuOek8E8YqHayE1DNu4rmsw5DTmQKO3C9ue6J79e51060"
 
@@ -32,7 +33,7 @@ const validate = values => {
     return errors;
 };
 
-const SignupForm = () => {
+const Form = ({ modeReg }) => {
     const [visible, setVisible] = useState(false);
 
     const handleChallengeHidden = useCallback(() => setVisible(false), []);
@@ -47,6 +48,11 @@ const SignupForm = () => {
         validate,
         onSubmit: values => {
             console.log(JSON.stringify(values, null, 2));
+            if (modeReg) {
+                console.log("REGISTRATION")
+            } else {
+                console.log("LOGIN")
+            }
         },
     });
 
@@ -72,7 +78,7 @@ const SignupForm = () => {
                 <input
                     id="password"
                     name="password"
-                    type="password"
+                    type="text"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.password}
@@ -95,6 +101,7 @@ const SignupForm = () => {
             ) : null}
 
             <InvisibleSmartCaptcha
+                hideShield={true}
                 sitekey={sitekey}
                 onSuccess={(t) => formik.values.tokenCaptcha = t}
                 onChallengeHidden={handleChallengeHidden}
@@ -131,6 +138,7 @@ const ChoiceMode = ({ modeReg, setModeReg }) => {
 }
 
 export const AuthModule = ({ }) => {
+    const { isLoggedIn, login, logout } = useContext(AuthContext);
     const [modalVisible, setModalVisible] = useState(true);
     const [modeReg, setModeReg] = useState(false);
 
@@ -151,19 +159,26 @@ export const AuthModule = ({ }) => {
     }
 
     return (
-        <div className={style.shadow}>
-            <div className={style.main}>
-                <div className={style.close} onClick={() => setModalVisible(false)}>
-                    <CloseEmoji />
-                </div>
-                <div className={style.mode}>
-                    <img src="./assets/main/blue-nemo-tishka.png" alt="Тишка И Немо - привет" />
-                    <ChoiceMode modeReg={modeReg} setModeReg={setModeReg} />
-                </div>
-                <div className={style.form}>
-                    <SignupForm />
-                </div>
-            </div>
-        </div>
+        <>
+            {isLoggedIn ? <></> :
+                <div className={style.shadow} >
+                    <div className={style.main}>
+                        <div className={style.close} onClick={() => setModalVisible(false)}>
+                            <CloseEmoji />
+                        </div>
+                        <div className={style.mode}>
+                            <img src="./assets/main/blue-nemo-tishka.png" alt="Тишка И Немо - привет" />
+                            <ChoiceMode modeReg={modeReg} setModeReg={setModeReg} />
+                        </div>
+                        <div className={style.form}>
+                            <p className={style.modeP}>
+                                {modeReg ? "Регистрация" : "Вход"}
+                            </p>
+                            <Form modeReg={modeReg} />
+                        </div>
+                    </div>
+                </div >
+            }
+        </>
     )
 }
