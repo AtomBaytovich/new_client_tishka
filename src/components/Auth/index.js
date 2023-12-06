@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import style from "./style.module.scss";
 import { CloseEmoji } from "../assets/emoji/close";
 import { useFormik } from "formik";
-import { SmartCaptcha } from '@yandex/smart-captcha';
+import { InvisibleSmartCaptcha, SmartCaptcha } from '@yandex/smart-captcha';
 
 const sitekey = "ysc1_nv8XuOek8E8YqHayE1DNu4rmsw5DTmQKO3C9ue6J79e51060"
 
@@ -33,6 +33,11 @@ const validate = values => {
 };
 
 const SignupForm = () => {
+    const [visible, setVisible] = useState(false);
+
+    const handleChallengeHidden = useCallback(() => setVisible(false), []);
+
+    const handleButtonClick = () => setVisible(true);
     const formik = useFormik({
         initialValues: {
             login: '',
@@ -44,6 +49,7 @@ const SignupForm = () => {
             console.log(JSON.stringify(values, null, 2));
         },
     });
+
     return (
         <form onSubmit={formik.handleSubmit} className={style.form}>
             <div className={style.lvl}>
@@ -76,12 +82,26 @@ const SignupForm = () => {
                 ) : null}
             </div>
 
-            <SmartCaptcha sitekey={sitekey} onSuccess={(t) => formik.values.tokenCaptcha = t} />
+            <div className={style.lvl2}>
+                <input
+                    type="radio"
+                    id="notii"
+                    name="isChangeII"
+                    onClick={handleButtonClick} />
+                <label for="notii">Я НЕ РОБОТ/КИБОРГ/ИИ</label>
+            </div>
             {formik.touched.tokenCaptcha && formik.errors.tokenCaptcha ? (
                 <div className={style.error}>{formik.errors.tokenCaptcha}</div>
             ) : null}
 
-            <button type="submit">Submit</button>
+            <InvisibleSmartCaptcha
+                sitekey={sitekey}
+                onSuccess={(t) => formik.values.tokenCaptcha = t}
+                onChallengeHidden={handleChallengeHidden}
+                visible={visible}
+            />
+
+            <button type="submit" className={style.button}><p>Войти</p></button>
         </form>
     );
 };
