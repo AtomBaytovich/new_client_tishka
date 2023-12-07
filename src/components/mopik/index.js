@@ -37,7 +37,7 @@ export const Mopik = ({ id, title, text, countLikes, countComment, countView }) 
         <div className={style.mopik} id={id}>
             <div className={style.data} style={nextView ? { borderRadius: "10px 0px 0px 10px" } : null}>
                 <div className={style.written} onClick={() => handleTap()}>
-                    <p className={style.title}>{title}</p>
+                    {/* <p className={style.title}>{title}</p> */}
                     <p className={style.text}>{text}</p>
                 </div>
                 {nextView ? (

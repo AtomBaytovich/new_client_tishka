@@ -1,0 +1,63 @@
+.checkboxBtn {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    user-select: none;
+    position: relative;
+}
+
+.checkboxBtn input[type=checkbox] {
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.checkboxBtn span {
+    color: #B7B7BD;
+    display: inline-block;
+    cursor: pointer;
+    padding: 6px 25px;
+    line-height: 30px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+    font-family: Montserrat Alternates;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    /* 171.429% */
+}
+
+/* Checked */
+.checkboxBtn input[type=checkbox]:checked+span {
+    background: #383752;
+}
+
+/* Focus */
+.focused span {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+/* Hover */
+.checkboxBtn:hover {
+    color: #B7B7BD;
+}
+
+/* Active */
+.checkboxBtn input[type=checkbox]:active:not(:disabled)+span {
+    background: #27273A;
+    color: #B7B7BD;
+}
+
+/* Disabled */
+.checkboxBtn input[type=checkbox]:disabled+span {
+    background: #27273A;
+    color: #B7B7BD;
+    cursor: default;
+}
+
+.checkboxBtn input[type=checkbox]:checked:disabled+span {
+    background: #27273A;
+}

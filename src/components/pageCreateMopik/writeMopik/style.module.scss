@@ -1,0 +1,14 @@
+.checkboxs {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 16px;
+    flex-wrap: wrap-reverse;
+}
+
+@media (min-width: 767px) {
+    .checkboxs {
+        justify-content: center;
+    }
+}
