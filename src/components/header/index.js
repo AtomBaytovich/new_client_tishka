@@ -11,13 +11,13 @@ export const Header = ({ backgroundColor = "#383752" }) => {
         <p className={style.title}>КОМПИК ТИШКИ</p>
         <div className={style.burger}><BurgerMenu /></div>
         <ul className={style.links}>
-          <li>Мопики</li>
+          <li><a href="/">Мопики</a></li>
           {
             isLoggedIn ?
-              <li>Немо $</li> :
-              <li onClick={() => setOpenAuth(true)}>Аккаунт</li>
+              <li><a>Немо $</a></li> :
+              <li onClick={() => setOpenAuth(true)}><a>Аккаунт</a></li>
           }
-          <li>О нас</li>
+          <li><a href="/about">О нас</a></li>
         </ul>
       </div>
     </div >

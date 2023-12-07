@@ -4,8 +4,8 @@ import "./index.scss";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 import { PageAbout } from "./pages/About";
 import { PageHome } from "./pages/Home";
-import { AuthModule } from "./components/Auth";
 import { AuthProvider } from "./api/context/auth";
+import { PageCreateMopik } from "./pages/CreateMopik";
 
 const router = createBrowserRouter([
   {
@@ -13,9 +13,13 @@ const router = createBrowserRouter([
     element: <PageHome />,
   },
   {
-    path: "about",
+    path: "/about",
     element: <PageAbout />,
   },
+  {
+    path: "/create-mopik",
+    element: <PageCreateMopik />
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

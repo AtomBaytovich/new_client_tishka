@@ -58,10 +58,11 @@
         align-items: center;
         justify-content: center;
 
-        gap: 12px;
+        gap: 10px;
 
         & img {
             width: 200px;
+            min-height: 198px;
         }
     }
 }
@@ -214,11 +215,13 @@
         & .lvl {
             & label {
                 font-size: 14px;
-            }   
+            }
+
             & input {
                 height: 38px;
             }
         }
+
         & .button {
             margin-top: 0px;
         }

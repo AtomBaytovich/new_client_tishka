@@ -29,22 +29,24 @@
         display: none;
     }
 
-    .title {
-        font-size: 24px !important;
-    }
+    .header {
+        & .title {
+            font-size: 24px !important;
+        }
 
-    .links {
-        display: flex !important;
-        gap: 16px;
+        & .links {
+            display: flex !important;
+            gap: 16px;
 
-        & li {
-            cursor: pointer;
-            color: #FFF;
-            font-family: Montserrat Alternates;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
+            & li a {
+                cursor: pointer;
+                color: #FFF;
+                font-family: Montserrat Alternates;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
         }
     }
 }

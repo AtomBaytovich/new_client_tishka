@@ -19,13 +19,13 @@ export const BurgerMenu = () => {
       </div>
       <div className={`${style.menu__items}`}>
         <ul>
-          <li>Мопики</li>
+        <li><a href="/">Мопики</a></li>
           {
             isLoggedIn ?
-              <li>Немо $</li> :
-              <li onClick={() => setOpenAuth(true)}>Аккаунт</li>
+              <li><a>Немо $</a></li> :
+              <li onClick={() => setOpenAuth(true)}><a>Аккаунт</a></li>
           }
-          <li>О нас</li>
+          <li><a href="/about">О нас</a></li>
         </ul>
       </div>
     </div>
