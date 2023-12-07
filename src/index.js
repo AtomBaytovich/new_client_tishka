@@ -23,7 +23,6 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
-      <AuthModule />
     </AuthProvider>
   </React.StrictMode>
 );

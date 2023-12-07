@@ -138,7 +138,7 @@ const ChoiceMode = ({ modeReg, setModeReg }) => {
 }
 
 export const AuthModule = ({ }) => {
-    const { isLoggedIn, login, logout } = useContext(AuthContext);
+    const { isLoggedIn, login, logout, setOpenAuth } = useContext(AuthContext);
     const [modalVisible, setModalVisible] = useState(true);
     const [modeReg, setModeReg] = useState(false);
 
@@ -147,6 +147,7 @@ export const AuthModule = ({ }) => {
             disableScroll();
         } else {
             enableScroll();
+            setOpenAuth(false)
         }
     }, [modalVisible]);
 

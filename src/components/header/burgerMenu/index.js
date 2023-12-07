@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import style from "./style.module.scss";
+import { AuthContext } from "../../../api/context/auth";
 
 export const BurgerMenu = () => {
+  const { isLoggedIn, setOpenAuth } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -18,7 +20,11 @@ export const BurgerMenu = () => {
       <div className={`${style.menu__items}`}>
         <ul>
           <li>Мопики</li>
-          <li>Аккаунт</li>
+          {
+            isLoggedIn ?
+              <li>Немо $</li> :
+              <li onClick={() => setOpenAuth(true)}>Аккаунт</li>
+          }
           <li>О нас</li>
         </ul>
       </div>
