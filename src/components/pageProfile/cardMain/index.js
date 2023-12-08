@@ -40,7 +40,7 @@ export const CardMain = ({
                 <StringInfo
                     srcImg={"./assets/profile/утро.png"}
                     altImg="Картинка сутки... Вампир"
-                    title={"Любимое время года:"}
+                    title={"Любимое время суток:"}
                     text={loveTime}
                 />
                 <StringInfo
