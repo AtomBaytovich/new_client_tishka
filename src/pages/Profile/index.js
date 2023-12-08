@@ -1,6 +1,8 @@
 import { Header } from "../../components/header";
+import { Mopik } from "../../components/mopik";
 import { CardMain } from "../../components/pageProfile/cardMain";
 import { MyTopDropDown } from "../../components/pageProfile/myTop";
+import { SelectMopiks } from "../../components/pageProfile/selectMopiks";
 import { StataDropDown } from "../../components/pageProfile/statistics";
 import style from "./style.module.scss";
 
@@ -22,9 +24,14 @@ export const PageProfile = () => {
         <div className={style.wrapper}>
             <Header />
             <div className={style.razm}>
-                <MyTopDropDown data={dataRatingUser} />
-                <StataDropDown />
-                <CardMain />
+                <div className={style.block}>
+                    <MyTopDropDown data={dataRatingUser} />
+                    <StataDropDown />
+                </div>
+                <div className={style.lenta}>
+                    <CardMain />
+                    <SelectMopiks/>
+                </div>
             </div>
         </div>
     )

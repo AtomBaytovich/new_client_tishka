@@ -1,12 +1,13 @@
 .stata {
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    align-items: center;
-    justify-content: center;
+    padding: 20px;
+    // align-items: center;
+    // justify-content: center;
     background: #383752;
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.28));
     border-radius: 15px;
-
-    height: 200px;
+    margin-top: 16px;
+    gap: 12px;
+    // height: 200px;
 }

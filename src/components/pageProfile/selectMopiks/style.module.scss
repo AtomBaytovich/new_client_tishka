@@ -1,0 +1,50 @@
+.select {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    & .check {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+
+        & p {
+            cursor: pointer;
+            color: #B7B7BD;
+            font-family: Montserrat Alternates;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+
+            &:hover {
+                color: #75BD4E;
+            }
+        }
+    }
+
+    & .list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .select {
+
+        & .check {
+            gap: 24px;
+
+            & p {
+                color: #B7B7BD;
+                font-family: Montserrat Alternates;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+        }
+    }
+}

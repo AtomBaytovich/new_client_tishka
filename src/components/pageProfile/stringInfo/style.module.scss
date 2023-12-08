@@ -1,0 +1,37 @@
+.string {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+
+    & .group {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+
+        & img {
+            width: 25px;
+        }
+
+        & p {
+            color: #75BD4E;
+            font-family: Montserrat Alternates;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+    }
+
+    & .text {
+        color: #B7B7BD;
+        font-family: Montserrat Alternates;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        /* 171.429% */
+    }
+}

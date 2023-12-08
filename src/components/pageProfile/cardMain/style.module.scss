@@ -7,6 +7,7 @@
     background: #383752;
     align-items: center;
     padding: 16px;
+    justify-content: center;
 
     & .avatar {
         & img {
@@ -15,12 +16,18 @@
     }
 
     & .nemo {
-        color: #F8F8F8;
-        font-family: Montserrat Alternates;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 900;
-        line-height: normal;
+        display: flex;
+        justify-content: center;
+        margin-top: 8px;
+
+        & p {
+            color: #F8F8F8;
+            font-family: Montserrat Alternates;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: normal;
+        }
     }
 
     & .info {
@@ -28,7 +35,16 @@
         flex-direction: column;
         gap: 8px;
 
-        & .about {
+        & .customStr {
+            flex-direction: column !important;
+        }
+
+        & .string {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            flex-wrap: wrap;
+
             & .group {
                 display: flex;
                 flex-direction: row;
@@ -60,6 +76,12 @@
             }
         }
     }
+}
 
-
+@media (min-width: 768px) {
+    .cardMain {
+        flex-direction: row;
+        max-width: 616px;
+        gap: 16px;
+    }
 }
