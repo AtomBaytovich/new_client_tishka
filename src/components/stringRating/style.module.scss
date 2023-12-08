@@ -1,0 +1,47 @@
+.stringRating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 15px 5px 5px 15px;
+    background: linear-gradient(91deg, #242437 4.66%, #242437 100%);
+    position: relative;
+    cursor: pointer;
+    caret-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+
+    & .avatar {
+        & .first {
+            position: absolute;
+            top: -20px;
+            transform: rotate(0.98turn);
+            left: -11px;
+            z-index: 10;
+        }
+
+        & img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    & p {
+        color: #FFF;
+        font-family: Montserrat Alternates;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    &:hover {
+        background: linear-gradient(91deg, #525261 4.66%, #575791 100%);
+    }
+}
+
+@media (min-width: 767px) { 
+    .stringRating {
+        & p {
+            font-size: 17px;
+        }
+    }
+}

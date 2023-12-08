@@ -6,6 +6,7 @@ import { PageAbout } from "./pages/About";
 import { PageHome } from "./pages/Home";
 import { AuthProvider } from "./api/context/auth";
 import { PageCreateMopik } from "./pages/CreateMopik";
+import { PageProfile } from "./pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/create-mopik",
     element: <PageCreateMopik />
+  },
+  {
+    path: "/:nemoid",
+    element: <PageProfile />
   }
 ]);
 
