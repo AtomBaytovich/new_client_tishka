@@ -106,6 +106,7 @@ const Form = ({ modeReg }) => {
                 onSuccess={(t) => formik.values.tokenCaptcha = t}
                 onChallengeHidden={handleChallengeHidden}
                 visible={visible}
+                webview={true}
             />
 
             <button type="submit" className={style.button}><p>Войти</p></button>

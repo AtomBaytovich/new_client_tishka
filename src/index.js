@@ -7,6 +7,7 @@ import { PageHome } from "./pages/Home";
 import { AuthProvider } from "./api/context/auth";
 import { PageCreateMopik } from "./pages/CreateMopik";
 import { PageProfile } from "./pages/Profile";
+import { PageNotes } from "./pages/Notes";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/create-mopik",
     element: <PageCreateMopik />
+  },
+  {
+    path: "/new-write",
+    element: <PageNotes />
   },
   {
     path: "/:nemoid",

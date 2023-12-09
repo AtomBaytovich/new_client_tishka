@@ -211,7 +211,8 @@
     .form {
         gap: 22px;
         padding: 16px;
-
+        min-width: 332px;
+        min-height: 304px;
         & .lvl {
             & label {
                 font-size: 14px;

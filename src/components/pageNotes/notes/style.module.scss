@@ -1,0 +1,120 @@
+.notes {
+    width: 100%;
+    height: 640px;
+    background-color: #383752;
+    display: flex;
+
+    & .see {
+        width: 90%;
+        background-color: #27273A;
+        height: 100%;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        & .lvl {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            & img {
+                width: 28px;
+                cursor: pointer;
+            }
+
+            & p {
+                color: #FFF;
+                text-align: center;
+                font-family: Montserrat Alternates;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+            }
+        }
+
+        & .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: auto;
+        }
+    }
+
+    & .notSee {
+        display: flex;
+        justify-content: center;
+        width: 10%;
+        background-color: #27273A;
+        height: 100%;
+        padding-top: 16px;
+
+
+        & img {
+            cursor: pointer;
+            width: 28px;
+            height: fit-content;
+        }
+    }
+
+    & .write {
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+
+        & .textareaElement {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+
+            color: #B7B7BD;
+            font-family: Verdana;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            /* 171.429% */
+        }
+    }
+}
+
+.cardNotes {
+    padding: 8px;
+    border-radius: 15px;
+    background: #383752;
+    width: 100%;
+    height: auto;
+
+    & p {
+        color: rgba(255, 255, 255, 0.51);
+        font-family: Verdana;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 17px;
+        /* 141.667% */
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .notes {
+        margin: auto;
+        margin-top: 24px;
+        width: 900px;
+        height: 640px;
+        border-radius: 10px;
+
+        & .see {
+            width: 40%;
+
+        }
+
+        & .notSee {
+            width: 7%;
+        }
+    }
+
+}
