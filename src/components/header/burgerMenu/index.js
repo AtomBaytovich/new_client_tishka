@@ -19,7 +19,8 @@ export const BurgerMenu = () => {
       </div>
       <div className={`${style.menu__items}`}>
         <ul>
-        <li><a href="/">Мопики</a></li>
+        <li><a href="/">Блокнот</a></li>
+        <li><a href="/mopiks">Мопики</a></li>
           {
             isLoggedIn ?
               <li><a>Немо $</a></li> :

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PageAbout } from "./pages/About";
 import { PageHome } from "./pages/Home";
 import { AuthProvider } from "./api/context/auth";
@@ -12,7 +12,7 @@ import { PageNotes } from "./pages/Notes";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PageHome />,
+    element: <PageNotes />,
   },
   {
     path: "/about",
@@ -23,8 +23,8 @@ const router = createBrowserRouter([
     element: <PageCreateMopik />
   },
   {
-    path: "/new-write",
-    element: <PageNotes />
+    path: "/mopiks",
+    element: <PageHome />
   },
   {
     path: "/:nemoid",
