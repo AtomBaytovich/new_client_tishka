@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
+import { BackEmoji } from "../../assets/emoji/back";
 
 
 const CardNotes = ({
@@ -65,10 +66,9 @@ export const Notes = () => {
             {openWrite ?
 
                 <div className={style.notSee}>
-                    <img src="./assets/notes/back.png"
-                        alt="Кнопочка назад"
-                        onClick={() => closeWrite()}
-                    />
+                    <div onClick={() => closeWrite()} className={style.back}>
+                        <BackEmoji />
+                    </div>
                 </div>
                 :
                 <div className={style.see}>

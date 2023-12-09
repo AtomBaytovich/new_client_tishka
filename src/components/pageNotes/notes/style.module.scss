@@ -52,10 +52,10 @@
         padding-top: 16px;
 
 
-        & img {
+        & .back {
             cursor: pointer;
-            width: 28px;
-            height: 28px;
+            width: auto;
+            height: 24px;
         }
     }
 
@@ -98,6 +98,25 @@
     }
 }
 
+@media (min-width: 768px) {
+
+    .notes {
+        margin: auto;
+        width: 100%;
+        height: 640px;
+        border-radius: 10px;
+
+        & .see {
+            width: 50%;
+        }
+
+        & .notSee {
+            width: 10%;
+        }
+    }
+
+}
+
 @media (min-width: 1024px) {
 
     .notes {
@@ -109,7 +128,6 @@
 
         & .see {
             width: 40%;
-
         }
 
         & .notSee {
