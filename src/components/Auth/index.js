@@ -4,6 +4,7 @@ import { CloseEmoji } from "../assets/emoji/close";
 import { useFormik } from "formik";
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
 import { AuthContext } from "../../api/context/auth";
+import { login, registration } from "../../api/services/auth";
 
 const sitekey = "ysc1_nv8XuOek8E8YqHayE1DNu4rmsw5DTmQKO3C9ue6J79e51060"
 
@@ -47,11 +48,32 @@ const Form = ({ modeReg }) => {
         },
         validate,
         onSubmit: values => {
-            console.log(JSON.stringify(values, null, 2));
+            console.log(values)
             if (modeReg) {
                 console.log("REGISTRATION")
+
+                registration({
+                    login: values.login,
+                    password: values.password,
+                    captcha: values.tokenCaptcha
+                }).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
+
             } else {
                 console.log("LOGIN")
+
+                login({
+                    login: values.login,
+                    password: values.password,
+                    captcha: values.tokenCaptcha
+                }).then(res => {
+                    console.log(res.data)
+                }).catch(err => {
+                    console.log(err)
+                })
             }
         },
     });
