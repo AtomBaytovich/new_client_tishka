@@ -1,14 +1,17 @@
 import Cookies from 'js-cookie';
 import $api from "../http";
+import axios from 'axios';
+
+const hostServer = process.env.REACT_APP_HOST_SERVER || "http://localhost:5000";
 
 export const registration = async ({ login, password, captcha }) => {
     try {
-        const req = await $api.post(`/api/v1/auth/reg`, {
+        const res = await $api.post(`/api/v1/auth/reg`, {
             login,
             password,
             captcha
         });
-        const data = req.data;
+        const data = res.data;
         console.log(data)
         Cookies.set('accessToken', data.accessToken, { expires: (1 / 1440) * 20 });
         Cookies.set('refreshToken', data.refreshToken, { expires: 30 });
@@ -20,13 +23,13 @@ export const registration = async ({ login, password, captcha }) => {
 
 export const login = async ({ login, password, captcha }) => {
     try {
-        const req = await $api.post(`/api/v1/auth/login`, {
+        const res = await $api.post(`/api/v1/auth/login`, {
             login,
             password,
             captcha
         });
 
-        const data = req.data;
+        const data = res.data;
         console.log(data)
         Cookies.set('accessToken', data.accessToken, { expires: (1 / 1440) * 20 });
         Cookies.set('refreshToken', data.refreshToken, { expires: 30 });
@@ -38,14 +41,27 @@ export const login = async ({ login, password, captcha }) => {
 
 export const logout = async () => {
     try {
-        const req = await $api.post(`/api/v1/auth/logout`);
+        const res = await $api.post(`/api/v1/auth/logout`);
 
-        const data = req.data;
+        const data = res.data;
         console.log(data)
         Cookies.remove('accessToken');
         Cookies.remove('refreshToken');
         return { data };
     } catch (error) {
+        throw error;
+    }
+}
+
+export const checkAuth = async () => {
+    try {
+        console.log(Cookies.get("refreshToken"))
+        const res = await axios.get(`${hostServer}/api/v1/auth/refresh-token`, { withCredentials: true })
+        const data = res.data;
+        console.log(data)
+        Cookies.set('accessToken', data.accessToken, { expires: (1 / 1440) * 20 });
+    } catch (error) {
+        console.log(error)
         throw error;
     }
 }
