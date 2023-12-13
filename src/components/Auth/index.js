@@ -5,13 +5,13 @@ import { useFormik } from "formik";
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
 import { AuthContext } from "../../api/context/auth";
 import { login, registration } from "../../api/services/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, registerUser } from "../../store/authorization/auth.slice";
 
 const sitekey = "ysc1_nv8XuOek8E8YqHayE1DNu4rmsw5DTmQKO3C9ue6J79e51060"
 
 const validate = values => {
     const errors = {};
-
-    console.log(values)
 
     if (!values.login) {
         errors.login = "Это обязательное поле!"
@@ -30,12 +30,14 @@ const validate = values => {
     } else if (values.tokenCaptcha.length < 30) {
         errors.tokenCaptcha = "Это обязательное поле!"
     }
-    console.log(errors)
+
     return errors;
 };
 
 const Form = ({ modeReg }) => {
     const [visible, setVisible] = useState(false);
+    const state = useSelector(state => state.auth)
+    const dispatch = useDispatch();
 
     const handleChallengeHidden = useCallback(() => setVisible(false), []);
 
@@ -50,36 +52,27 @@ const Form = ({ modeReg }) => {
         onSubmit: values => {
             console.log(values)
             if (modeReg) {
-                console.log("REGISTRATION")
-
-                registration({
+                dispatch(registerUser({
                     login: values.login,
                     password: values.password,
                     captcha: values.tokenCaptcha
-                }).then(res => {
-                    console.log(res.data)
-                }).catch(err => {
-                    console.log(err)
-                })
+                }))
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err))
 
             } else {
-                console.log("LOGIN")
-
-                login({
+                dispatch(loginUser({
                     login: values.login,
                     password: values.password,
                     captcha: values.tokenCaptcha
-                }).then(res => {
-                    console.log(res.data)
-                }).catch(err => {
-                    console.log(err)
-                })
+                })).then(res => console.log(res)).catch(err => console.log(err))
             }
         },
     });
 
     return (
         <form onSubmit={formik.handleSubmit} className={style.form}>
+            {state.error ? (<div>{state.error}</div>) : <></>}
             <div className={style.lvl}>
                 <label htmlFor="login">ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
                 <input
@@ -161,7 +154,7 @@ const ChoiceMode = ({ modeReg, setModeReg }) => {
 }
 
 export const AuthModule = ({ }) => {
-    const { isLoggedIn, login, logout, setOpenAuth } = useContext(AuthContext);
+    const { setOpenAuth, stateAuth } = useContext(AuthContext);
     const [modalVisible, setModalVisible] = useState(true);
     const [modeReg, setModeReg] = useState(false);
 
@@ -184,7 +177,8 @@ export const AuthModule = ({ }) => {
 
     return (
         <>
-            {isLoggedIn ? <></> :
+            {/* {modalVisible ? <></> : */}
+            {stateAuth.isAuthenticated == false && (
                 <div className={style.shadow} >
                     <div className={style.main}>
                         <div className={style.close} onClick={() => setModalVisible(false)}>
@@ -202,7 +196,9 @@ export const AuthModule = ({ }) => {
                         </div>
                     </div>
                 </div >
-            }
+            )}
+
+            {/* } */}
         </>
     )
 }

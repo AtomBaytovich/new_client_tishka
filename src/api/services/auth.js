@@ -17,6 +17,7 @@ export const registration = async ({ login, password, captcha }) => {
         Cookies.set('refreshToken', data.refreshToken, { expires: 30 });
         return { data };
     } catch (error) {
+        if (error?.response?.data) throw error?.response?.data;
         throw error;
     }
 }
@@ -35,6 +36,7 @@ export const login = async ({ login, password, captcha }) => {
         Cookies.set('refreshToken', data.refreshToken, { expires: 30 });
         return { data };
     } catch (error) {
+        if (error?.response?.data) throw error?.response?.data;
         throw error;
     }
 }
@@ -55,11 +57,10 @@ export const logout = async () => {
 
 export const checkAuth = async () => {
     try {
-        console.log(Cookies.get("refreshToken"))
         const res = await axios.get(`${hostServer}/api/v1/auth/refresh-token`, { withCredentials: true })
         const data = res.data;
-        console.log(data)
         Cookies.set('accessToken', data.accessToken, { expires: (1 / 1440) * 20 });
+        return res;
     } catch (error) {
         console.log(error)
         throw error;

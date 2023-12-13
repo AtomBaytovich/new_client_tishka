@@ -8,6 +8,8 @@ import { AuthProvider } from "./api/context/auth";
 import { PageCreateMopik } from "./pages/CreateMopik";
 import { PageProfile } from "./pages/Profile";
 import { PageNotes } from "./pages/Notes";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </Provider>
   </React.StrictMode>
 );

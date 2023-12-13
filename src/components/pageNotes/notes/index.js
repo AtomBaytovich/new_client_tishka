@@ -8,7 +8,7 @@ const CardNotes = ({
     text,
     onClick
 }) => {
-    console.log(id)
+    // console.log(id)
     return (
         <div className={style.cardNotes} id={id} onClick={() => onClick(id)}>
             <p>{text}</p>
@@ -37,16 +37,16 @@ export const Notes = () => {
     };
 
     const openWriteFunc = (id) => {
-        console.log(id)
+        // console.log(id)
         let { text } = getDataMopik(id)
         setDataWrite(text)
-        console.log(text)
+        // console.log(text)
         setOpenWrite(true)
     }
 
     const write = ({ text }) => {
         setDataWrite(text)
-        console.log(text)
+        // console.log(text)
     }
 
     const closeWrite = () => {
@@ -55,7 +55,7 @@ export const Notes = () => {
     }
 
     useEffect(() => {
-        console.log(openWrite)
+        // console.log(openWrite)
         if (openWrite && dataWrite && dataWrite.length > 0) {
             inputRef.current.innerText = dataWrite
         }

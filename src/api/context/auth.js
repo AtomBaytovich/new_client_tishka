@@ -1,36 +1,29 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { AuthModule } from '../../components/Auth';
-import { checkAuth } from '../services/auth';
+import { refreshTokens } from '../../store/authorization/auth.slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const AuthContext = createContext();
 
-
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [openAuth, setOpenAuth] = useState(false)
-    const [isLoading, setIsLoading] = useState(false);
+    const [openAuth, setOpenAuth] = useState(false);
+    const stateAuth = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
 
     const login = () => {
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
     };
 
     const logout = () => {
-        setIsLoggedIn(false);
+        // setIsLoggedIn(false);
     };
-    const checkAuthC = () => {
-        setIsLoading(true)
-        checkAuth()
-            .then(() => {
-                setIsLoggedIn(true)
-            })
-            .catch(err => console.log(err))
-            .finally(() => {
-                setIsLoading(false)
-            })
-    }
+
+    useEffect(() => {
+        dispatch(refreshTokens())
+    }, [])
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout, setOpenAuth, checkAuthC, isLoading }}>
+        <AuthContext.Provider value={{ login, logout, stateAuth, openAuth, setOpenAuth }}>
             {children}
             {openAuth && <AuthModule />}
         </AuthContext.Provider>
