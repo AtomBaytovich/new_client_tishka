@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { checkAuth, login as loginF, registration } from '../../api/services/auth';
+import { checkAuth, login as loginF, logout, registration } from '../../api/services/auth';
 
 // Создаем асинхронный Thunk для выполнения запроса на сервер
 export const loginUser = createAsyncThunk(
@@ -18,6 +18,11 @@ export const refreshTokens = createAsyncThunk(
         const response = await checkAuth()
         return response.data;
     }
+);
+
+export const logoutUser = createAsyncThunk(
+    'auth/logout',
+    async () => await logout()
 );
 
 // Создаем slice с Redux Toolkit
@@ -83,7 +88,20 @@ const authSlice = createSlice({
                 state.isAuthenticated = true;
             })
             .addCase(refreshTokens.rejected, (state) => {
-                console.log("OHN OO")
+                state.isLoading = false;
+                state.error = undefined;
+                state.isAuthenticated = false;
+            })
+            .addCase(logoutUser.pending, (state) => {
+                state.isLoading = true;
+                state.error = undefined;
+            })
+            .addCase(logoutUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = undefined;
+                state.isAuthenticated = false;
+            })
+            .addCase(logoutUser.rejected, (state) => {
                 state.isLoading = false;
                 state.error = undefined;
                 state.isAuthenticated = false;

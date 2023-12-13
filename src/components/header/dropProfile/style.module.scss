@@ -1,0 +1,22 @@
+.drop {
+    position: absolute;
+    width: 150px;
+    background: #404040;
+    top: 48px;
+    z-index: 100;
+    border-radius: 10px;
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    & a {
+        cursor: pointer;
+        font-size: 16px !important;
+
+        &:hover {
+            color: #B7B7BD !important;
+        }
+    }
+}

@@ -10,20 +10,13 @@ export const AuthProvider = ({ children }) => {
     const stateAuth = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
-    const login = () => {
-        // setIsLoggedIn(true);
-    };
-
-    const logout = () => {
-        // setIsLoggedIn(false);
-    };
-
     useEffect(() => {
-        dispatch(refreshTokens())
+        dispatch(refreshTokens())/*.then(res => dispatch())*/
+        //доделай поулчение пользователю отсюда getMe
     }, [])
 
     return (
-        <AuthContext.Provider value={{ login, logout, stateAuth, openAuth, setOpenAuth }}>
+        <AuthContext.Provider value={{ stateAuth, openAuth, setOpenAuth }}>
             {children}
             {openAuth && <AuthModule />}
         </AuthContext.Provider>
