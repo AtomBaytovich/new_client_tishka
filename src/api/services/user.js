@@ -6,7 +6,7 @@ export const getMe = async () => {
 
         return user.data;
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         throw error
     }
 }

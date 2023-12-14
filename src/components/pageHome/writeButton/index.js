@@ -4,7 +4,7 @@ export const WriteButton = () => {
     return (
 
         <div className={style.fon}>
-            <a href="/create-mopik">
+            <a href="/">
                 <div className={style.written}>
                     <p>Написать</p>
                 </div>

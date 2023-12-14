@@ -7,6 +7,7 @@ import { AuthContext } from "../../api/context/auth";
 import { login, registration } from "../../api/services/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, registerUser } from "../../store/authorization/auth.slice";
+import { getUserMe } from "../../store/user/user.slice";
 
 const sitekey = "ysc1_nv8XuOek8E8YqHayE1DNu4rmsw5DTmQKO3C9ue6J79e51060"
 
@@ -37,6 +38,7 @@ const validate = values => {
 const Form = ({ modeReg }) => {
     const [visible, setVisible] = useState(false);
     const state = useSelector(state => state.auth)
+    console.log(state)
     const dispatch = useDispatch();
 
     const handleChallengeHidden = useCallback(() => setVisible(false), []);
@@ -57,7 +59,7 @@ const Form = ({ modeReg }) => {
                     password: values.password,
                     captcha: values.tokenCaptcha
                 }))
-                    .then(res => console.log(res))
+                    .then(res => dispatch(getUserMe()))
                     .catch(err => console.log(err))
 
             } else {
@@ -65,7 +67,9 @@ const Form = ({ modeReg }) => {
                     login: values.login,
                     password: values.password,
                     captcha: values.tokenCaptcha
-                })).then(res => console.log(res)).catch(err => console.log(err))
+                }))
+                    .then(res => dispatch(getUserMe()))
+                    .catch(err => console.log(err))
             }
         },
     });

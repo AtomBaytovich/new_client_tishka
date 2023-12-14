@@ -51,7 +51,7 @@ export const checkAuth = async () => {
         const res = await axios.get(`${hostServer}/api/v1/auth/refresh-token`, { withCredentials: true })
         return res;
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         throw error;
     }
 }
