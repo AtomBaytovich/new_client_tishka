@@ -38,7 +38,6 @@ const validate = values => {
 const Form = ({ modeReg }) => {
     const [visible, setVisible] = useState(false);
     const state = useSelector(state => state.auth)
-    console.log(state)
     const dispatch = useDispatch();
 
     const handleChallengeHidden = useCallback(() => setVisible(false), []);

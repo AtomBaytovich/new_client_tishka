@@ -27,7 +27,8 @@ $api.interceptors.response.use(
                 Cookies.set('refreshToken', data.refreshToken, { expires: 30 });
                 return $api.request(originalRequest)
             } catch (error) {
-                console.log("Не авторизован")
+                console.log("Не авторизован");
+                window.location.reload()
             }
         }
         throw error;

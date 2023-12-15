@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { createMopik, getMopik, putMopik } from '../../api/services/mopik';
-
 // Создаем асинхронный Thunk для выполнения запроса на сервер
 export const createNote = createAsyncThunk(
     'note/createNote',
@@ -23,6 +22,7 @@ const noteSlice = createSlice({
     name: 'note',
     initialState: {
         isLoading: false,
+        isLoadingPut: false,
         error: undefined,
         mopik: undefined
     },
@@ -43,6 +43,7 @@ const noteSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(getNote.pending, (state) => {
+                console.log("ALSKDKASDKA")
                 state.isLoading = true;
                 state.error = undefined;
             })
@@ -57,16 +58,16 @@ const noteSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(putNote.pending, (state) => {
-                state.isLoading = true;
+                state.isLoadingPut = true;
                 state.error = undefined;
             })
             .addCase(putNote.fulfilled, (state, action) => {
-                state.isLoading = false;
+                state.isLoadingPut = false;
                 state.error = undefined;
                 state.mopik = action.payload.mopik;
             })
             .addCase(putNote.rejected, (state, action) => {
-                state.isLoading = false;
+                state.isLoadingPut = false;
                 state.error = action.error.message;
             })
     },

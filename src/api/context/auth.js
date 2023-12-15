@@ -3,6 +3,7 @@ import { AuthModule } from '../../components/Auth';
 import { refreshTokens } from '../../store/authorization/auth.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserMe } from '../../store/user/user.slice';
+import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
 
@@ -12,12 +13,13 @@ export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(refreshTokens())
-            .unwrap()
-            .then(res => {
-                dispatch(getUserMe())
-            }).catch(err => console.log(err))
-        //доделай поулчение пользователю отсюда getMe
+        // if (stateAuth.isAuthenticated) {
+            dispatch(refreshTokens())
+                .unwrap()
+                .then(res => {
+                    dispatch(getUserMe())
+                }).catch(err => console.log(err))
+        // }
     }, [])
 
     return (

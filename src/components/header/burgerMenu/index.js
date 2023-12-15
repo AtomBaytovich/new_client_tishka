@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { Links } from "../links";
 import { Link } from "react-router-dom";
@@ -7,11 +7,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../store/authorization/auth.slice";
 import { clearUser } from "../../../store/user/user.slice";
 
-export const BurgerMenu = () => {
+export const BurgerMenu = ({ hidden = true }) => {
   const { stateAuth, setOpenAuth } = useContext(AuthContext);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+  useEffect(() => {
+    if (hidden) {
+      document.addEventListener("click", handleClickOutside, true);
+
+      return () => {
+        document.removeEventListener("click", handleClickOutside, true);
+      };
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -19,7 +35,7 @@ export const BurgerMenu = () => {
 
   const nickname = user?.user?.nickname?.main
   return (
-    <div className={`${style.burger__menu} ${isOpen ? `${style.open}` : ""}`}>
+    <div className={`${style.burger__menu} ${isOpen ? `${style.open}` : ""}`} ref={dropdownRef}>
       <div className={style.burger__icon} onClick={toggleMenu}>
         <div className={style.line}></div>
         <div className={style.line}></div>
