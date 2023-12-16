@@ -5,7 +5,7 @@ import { getMopikS } from '../../api/services/mopik';
 
 export const getNoteS = createAsyncThunk(
     'noteS0/getNoteS',
-    async ({ start = 0, count = 35 }) => await getMopikS({ start, count })
+    async ({ start = 0, count = 40 }) => await getMopikS({ start, count })
 );
 
 
@@ -18,14 +18,25 @@ const noteS0Slice = createSlice({
         data: {
             mopiks: [],
             remainingItems: undefined,
-            totalItems: undefined
-        }
+            totalItems: undefined,
+        },
     },
     reducers: {
         clear: (state) => {
             state.data.mopiks = [];
             state.data.remainingItems = undefined;
             state.data.totalItems = undefined;
+        },
+        addNew: (state, action) => {
+            state.data.mopiks.unshift(action.payload);
+        },
+        put: (state, action) => {
+            let mopik = state.data.mopiks.find((element) => element._id == action.payload.id);
+
+            // Изменяем найденный элемент
+            if (mopik) {
+                mopik.text = action.payload.text;
+            }
         }
     },
     extraReducers: (builder) => {
@@ -37,7 +48,6 @@ const noteS0Slice = createSlice({
             .addCase(getNoteS.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = undefined;
-                console.log(action.payload)
                 // state.data.mopiks.push(...action.payload.mopiks);
                 state.data.mopiks = [
                     ...state.data.mopiks,
@@ -54,5 +64,5 @@ const noteS0Slice = createSlice({
     },
 });
 
-export const { clear } = noteS0Slice.actions;
+export const { clear, addNew, put } = noteS0Slice.actions;
 export default noteS0Slice.reducer;

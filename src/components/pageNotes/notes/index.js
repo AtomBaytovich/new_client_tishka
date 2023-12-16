@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { BackEmoji } from "../../assets/emoji/back";
 import { useDispatch, useSelector } from "react-redux";
-import { controllerStopSignalGetNot, createNote, getNote, putNote } from "../../../store/notes/note.slice";
+import { createNote, getNote, putNote } from "../../../store/notes/note.slice";
 import { useLocation, useNavigate } from "react-router-dom";
-import { clear, getNoteS } from "../../../store/notes/notes.slice";
+import { addNew, clear, getNoteS, put } from "../../../store/notes/notes.slice";
+import { Loader } from "../../loader";
 
 const CardNotes = ({
     id,
@@ -12,7 +13,7 @@ const CardNotes = ({
     onClick
 }) => {
     return (
-        <div className={style.cardNotes} style={{ padding: "103px" }} id={id} onClick={() => onClick(id)}>
+        <div className={style.cardNotes} style={{ padding: 120 }} id={id} onClick={() => onClick(id)}>
             <p>{text}</p>
         </div>
     )
@@ -21,6 +22,7 @@ const CardNotes = ({
 const ListMopiksNotes = ({ openWriteFunc }) => {
     const state = useSelector(state => state.noteS0);
     const dispatch = useDispatch();
+    const scrollRef = useRef();
 
     const handleScroll = (event) => {
         const scrollBottom = event.target.scrollTop +
@@ -42,6 +44,28 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
         };
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            localStorage.setItem('scrollPositionNotes', scrollRef.current.scrollTop);
+        };
+
+        if (scrollRef.current) {
+            scrollRef.current.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (scrollRef.current) {
+                scrollRef.current.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [scrollRef.current]);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = localStorage.getItem('scrollPositionNotes') || 0;
+        }
+    }, []);
+
     if (state.isLoading && state.data.mopiks.length == 0) return <p style={{
         margin: "auto",
         color: "rgba(255, 255, 255, 0.51)",
@@ -49,7 +73,7 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
     }}>Загрузка ...</p>
 
     return (
-        <div className={style.list} onScroll={handleScroll}>
+        <div className={style.list} onScroll={handleScroll} ref={scrollRef} >
             {state.data.mopiks.map((el, id) =>
                 <CardNotes
                     id={el._id}
@@ -86,7 +110,7 @@ export const Notes = () => {
     useEffect(() => {
         if (!didInit) {
             didInit = true;
-            dispatch(getNoteS({ start: 0, count: 3 })).then(() => console.log(state.data.mopiks))
+            dispatch(getNoteS({ start: 0, count: 3 }))
         }
         return () => {
             dispatch(clear())
@@ -94,8 +118,6 @@ export const Notes = () => {
     }, [])
 
     useEffect(() => {
-        // Здесь вы можете выполнить код, который будет выполняться при изменении query параметров
-        console.log('Изменение query параметров:', location.search);
         if (openWrite && location.search == "") {
             setOpenWrite(false);
             setRulesText(false)
@@ -114,7 +136,7 @@ export const Notes = () => {
                     setDataWrite(res.mopik?.text)
                 }
             })
-            .catch(err => {
+            .catch(() => {
                 navigate('', { replace: true });
                 setRulesText(false)
                 setOpenWrite(false);
@@ -128,11 +150,12 @@ export const Notes = () => {
     useEffect(() => {
         if (focus && openWrite) {
             let typingTimer;
-            const delay = 1500; // полторы секунды
+            const delay = 800;
             const sendData = () => {
                 // Отправка текста на сервер
                 if ((dataWrite == mopik.mopik.text) == false) {
                     dispatch(putNote({ id: mopik.mopik._id, text: inputRef.current.innerText }))
+                    dispatch(put({ id: mopik.mopik._id, text: inputRef.current.innerText }))
                 }
             }
             typingTimer = setTimeout(sendData, delay);
@@ -141,6 +164,10 @@ export const Notes = () => {
             }
         }
     }, [focus, dataWrite]);
+
+    // useEffect(() => {
+    //     if(openWrite == false)
+    // }, [openWrite])
 
     useEffect(() => {
         if (openWrite && dataWrite && dataWrite.length > 0 && rulesText) {
@@ -164,6 +191,8 @@ export const Notes = () => {
         dispatch(createNote())
             .unwrap()
             .then(res => {
+                console.log(res)
+                dispatch(addNew({ ...res.mopik, text: "" }))
                 const _id = res.mopik._id;
                 const searchParams = new URLSearchParams(location.search);
                 searchParams.set('id', _id); // Здесь 'param' - имя параметра, 'value' - его значение
@@ -173,8 +202,7 @@ export const Notes = () => {
                 window.history.pushState(null, '', newUrl);
                 setRulesText(true)
             })
-            .catch(err => {
-                console.log(err)
+            .catch(() => {
                 setRulesText(false)
                 setOpenWrite(false);
             })
@@ -189,25 +217,30 @@ export const Notes = () => {
     return (
         <div className={style.notes}>
             {/* <div> */}
-            {(openWrite == true && mopik.isLoading == false) && (
-                <div className={style.notSee}>
-                    <div onClick={() => closeWrite()} className={style.back}>
+            {(openWrite == true) && (
+                <div className={`${style.notSee} ${style.element}`}>
+                    <div onClick={() => {
+                        if (mopik.isLoading == false) closeWrite()
+                    }} className={style.back}>
                         <BackEmoji />
                     </div>
+                    {mopik.put.loading && <div className={style.loader}></div>}
                 </div>
             )}
 
-            {(openWrite == false) && <div className={style.see} >
-                <div className={style.lvl}>
-                    <p>Мои мопики</p>
-                    <img
-                        src="./assets/notes/pencil.png"
-                        alt="Карандашек"
-                        onClick={() => newMopik()}
-                    />
+            {(openWrite == false) &&
+                <div className={`${style.see} ${style.element}`} >
+                    <div className={style.lvl} id="foo" >
+                        <p>Мои мопики</p>
+                        <img
+                            src="./assets/notes/pencil.png"
+                            alt="Карандашек"
+                            onClick={() => newMopik()}
+                        />
+                    </div>
+                    <ListMopiksNotes openWriteFunc={openWriteFunc} />
                 </div>
-                <ListMopiksNotes openWriteFunc={openWriteFunc} />
-            </div>}
+            }
             {(openWrite == true && mopik.isLoading == false) &&
                 <div className={style.write}>
                     <div
@@ -221,11 +254,7 @@ export const Notes = () => {
                     </div>
                 </div>
             }
-            {(mopik.isLoading == true) ? <p className={style.write} style={{
-                // margin: "auto",
-                color: "rgba(255, 255, 255, 0.51)",
-                fontFamily: "Verdana"
-            }}>Загрузка ...</p> : undefined}
+            {(mopik.isLoading == true) ? <Loader /> : undefined}
         </div>
     )
 }

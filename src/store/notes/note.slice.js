@@ -22,7 +22,10 @@ const noteSlice = createSlice({
     name: 'note',
     initialState: {
         isLoading: false,
-        isLoadingPut: false,
+        put: {
+            loading: false,
+            date: undefined
+        },
         error: undefined,
         mopik: undefined
     },
@@ -43,7 +46,6 @@ const noteSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(getNote.pending, (state) => {
-                console.log("ALSKDKASDKA")
                 state.isLoading = true;
                 state.error = undefined;
             })
@@ -58,16 +60,16 @@ const noteSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(putNote.pending, (state) => {
-                state.isLoadingPut = true;
+                state.put.loading = true;
                 state.error = undefined;
             })
             .addCase(putNote.fulfilled, (state, action) => {
-                state.isLoadingPut = false;
+                state.put.loading = false;
                 state.error = undefined;
                 state.mopik = action.payload.mopik;
             })
             .addCase(putNote.rejected, (state, action) => {
-                state.isLoadingPut = false;
+                state.put.loading = false;
                 state.error = action.error.message;
             })
     },
