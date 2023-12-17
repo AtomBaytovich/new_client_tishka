@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNote, getNote, putNote } from "../../../store/notes/note.slice";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addNew, clear, getNoteS, put } from "../../../store/notes/notes.slice";
-import { Loader } from "../../loader";
+import { SkeletonLoading } from "../skeleton";
+import { MiniLoader } from "../miniLoader";
+
 
 const CardNotes = ({
     id,
@@ -13,7 +15,7 @@ const CardNotes = ({
     onClick
 }) => {
     return (
-        <div className={style.cardNotes} style={{ padding: 120 }} id={id} onClick={() => onClick(id)}>
+        <div className={style.cardNotes} id={id} onClick={() => onClick(id)}>
             <p>{text}</p>
         </div>
     )
@@ -29,9 +31,9 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
             event.target.offsetHeight == event.target.scrollHeight;
 
         if (scrollBottom) {
-            if (state.data.remainingItems > 0) {
+            if (state.data.remainingItems > 0 && state.isLoading == false) {
                 dispatch(
-                    getNoteS({ start: state.data.mopiks.length, count: 3 })
+                    getNoteS({ start: state.data.mopiks.length, count: 20 })
                 )
             }
         }
@@ -74,7 +76,7 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
 
     return (
         <div className={style.list} onScroll={handleScroll} ref={scrollRef} >
-            {state.data.mopiks.map((el, id) =>
+            {state.data.mopiks.map((el) =>
                 <CardNotes
                     id={el._id}
                     onClick={() => openWriteFunc(el._id)}
@@ -82,7 +84,9 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
                     key={el._id}
                 />
             )}
-            {state.isLoading && <div>Загрузка...</div>}
+            {state.isLoading &&
+                <SkeletonLoading />
+            }
         </div >
     )
 }
@@ -90,7 +94,6 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
 export const Notes = () => {
     const dispatch = useDispatch();
     const mopik = useSelector(state => state.note);
-    const state = useSelector(state => state.noteS0);
     const [openWrite, setOpenWrite] = useState(false);
     const [rulesText, setRulesText] = useState(false);
     const [dataWrite, setDataWrite] = useState("")
@@ -110,7 +113,7 @@ export const Notes = () => {
     useEffect(() => {
         if (!didInit) {
             didInit = true;
-            dispatch(getNoteS({ start: 0, count: 3 }))
+            dispatch(getNoteS({ start: 0, count: 20 }))
         }
         return () => {
             dispatch(clear())
@@ -155,6 +158,7 @@ export const Notes = () => {
                 // Отправка текста на сервер
                 if ((dataWrite == mopik.mopik.text) == false) {
                     dispatch(putNote({ id: mopik.mopik._id, text: inputRef.current.innerText }))
+                    // это можно как - то по другому
                     dispatch(put({ id: mopik.mopik._id, text: inputRef.current.innerText }))
                 }
             }
@@ -191,7 +195,6 @@ export const Notes = () => {
         dispatch(createNote())
             .unwrap()
             .then(res => {
-                console.log(res)
                 dispatch(addNew({ ...res.mopik, text: "" }))
                 const _id = res.mopik._id;
                 const searchParams = new URLSearchParams(location.search);
@@ -207,16 +210,9 @@ export const Notes = () => {
                 setOpenWrite(false);
             })
     }
-    /* notes - redux - 
-    чтобы когда назад - стояло все на своей позиции, 
-    добавление записи, 
-    сохрание - показывать, 
-    анимация
     
-    */
     return (
         <div className={style.notes}>
-            {/* <div> */}
             {(openWrite == true) && (
                 <div className={`${style.notSee} ${style.element}`}>
                     <div onClick={() => {
@@ -224,7 +220,7 @@ export const Notes = () => {
                     }} className={style.back}>
                         <BackEmoji />
                     </div>
-                    {mopik.put.loading && <div className={style.loader}></div>}
+                    {(mopik.put.loading || mopik.isLoading == true) && <MiniLoader />}
                 </div>
             )}
 
@@ -254,7 +250,6 @@ export const Notes = () => {
                     </div>
                 </div>
             }
-            {(mopik.isLoading == true) ? <Loader /> : undefined}
         </div>
     )
 }

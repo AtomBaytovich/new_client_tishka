@@ -1,23 +1,3 @@
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.loader {
-    border: 6px solid #f3f3f3;
-    border-top: 6px solid #3498db;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    animation: spin 2s linear infinite;
-    margin: 0 auto;
-}
-
 .notes {
     width: 100%;
     height: 640px;
@@ -29,30 +9,30 @@
     .element {
         position: relative;
         animation: slideIn 1s forwards;
-      }
-      
-      @keyframes slideIn {
+    }
+
+    @keyframes slideIn {
         0% {
-          left: -100%;
-          transform: scale(1);
+            left: -100%;
+            transform: scale(1);
         }
-      
+
         50% {
-          left: calc(100% - 99.5%);
-          transform: scale(0.99);
+            left: calc(100% - 99.5%);
+            transform: scale(0.99);
         }
-      
+
         // 60% {
         //   left: calc(100% - 40px);
         //   transform: scale(0.95);
         // }
-      
+
         100% {
-          left: 0;
-          transform: scale(1);
+            left: 0;
+            transform: scale(1);
         }
-      }
-      
+    }
+
 
     & .see {
         width: 90%;
@@ -71,6 +51,7 @@
 
             & img {
                 width: 28px;
+                height: 28px;
                 cursor: pointer;
             }
 
@@ -145,7 +126,8 @@
     }
 
     & .write {
-        width: 100%;
+        // width: 100%;
+        width: 90%;
         height: 100%;
         padding: 16px;
 
