@@ -210,11 +210,11 @@ export const Notes = () => {
                 setOpenWrite(false);
             })
     }
-    
+
     return (
         <div className={style.notes}>
             {(openWrite == true) && (
-                <div className={`${style.notSee} ${style.element}`}>
+                <div className={`${style.notSee}`}>
                     <div onClick={() => {
                         if (mopik.isLoading == false) closeWrite()
                     }} className={style.back}>
