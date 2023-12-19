@@ -5,7 +5,9 @@ import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
 import { SearchInput } from "../../components/seacrhInput";
 import { WriteButton } from "../../components/pageHome/writeButton";
 import style from "./style.module.scss";
-import { Footer } from "../../components/footer";
+import { Loader } from "../../components/loader";
+import { useSelector } from "react-redux";
+import { ListMopiks } from "../../components/pageHome/list";
 
 const dataRatingUser = [
     { name: "немо 3", id: 3, isFirst: true, avatar: "" },
@@ -21,6 +23,10 @@ const dataRatingUser = [
 ]
 
 export const PageHome = () => {
+    const stateAuth = useSelector((state) => state.auth);
+    console.log(stateAuth.isLoading)
+    if (stateAuth.isLoading) return <Loader />
+
     return (
         <div className={style.wrapper}>
             <Header />
@@ -33,32 +39,7 @@ export const PageHome = () => {
                             <SearchInput />
                             <WriteButton />
                         </div>
-                        <div className={style.list}>
-                            <Mopik
-                                id={1}
-                                title={"Как же хочется отдохнуть в Сибири"}
-                                text={`Однажды моя мама, живущая в сибирской деревне, решила уехать в город. Она собрала все свои вещи и поехала на поезде в далекий город. `}
-                                countView={458}
-                            />
-                            <Mopik
-                                id={2}
-                                title={"Как же хочется отдохнуть в Сибири"}
-                                text={`Он обошел вокруг избушки, зачем-то потрогал рукой углы и полез на чердак, подправил съехавшие в сторону пластушины корья на крыше. Спустившись по дряхлой лестнице, он тщательно отряхнул штаны, высморкался и разъяснил рыбакам, что избушка подходящая, что в ней можно спокойно ждать осеннюю путину, а пока вести промысел паромами и переметами. Лодки же, невода, плавные сети и всю прочую снасть надобно как следует подготовить к большому ходу рыбы. Потянулись однообразные дни. Рыбаки чинили невода, конопатили лодки, изготовляли якорницы, вязали, смолили.`}
-                                countView={458}
-                            />
-                            <Mopik
-                                id={3}
-                                title={"а как без темы..."}
-                                text={`Хотел бы я стать богатым и успешным... но всё так сложно... приходится пахать и так далее....`}
-                                countView={458}
-                            />
-                            <Mopik
-                                id={4}
-                                title={"Как же хочется отдохнуть в Сибири"}
-                                text={`Однажды моя мама, живущая в сибирской деревне, решила уехать в город. Она собрала все свои вещи и поехала на поезде в далекий город. `}
-                                countView={458}
-                            />
-                        </div>
+                        <ListMopiks />
                     </div>
                 </div>
             </div>

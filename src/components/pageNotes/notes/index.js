@@ -117,6 +117,7 @@ export const Notes = () => {
         }
         return () => {
             dispatch(clear())
+            localStorage.removeItem('scrollPositionNotes')
         }
     }, [])
 
