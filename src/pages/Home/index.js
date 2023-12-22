@@ -1,5 +1,4 @@
 import { Header } from "../../components/header";
-import { Mopik } from "../../components/mopik";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
 import { SearchInput } from "../../components/seacrhInput";
@@ -24,7 +23,6 @@ const dataRatingUser = [
 
 export const PageHome = () => {
     const stateAuth = useSelector((state) => state.auth);
-    console.log(stateAuth.isLoading)
     if (stateAuth.isLoading) return <Loader />
 
     return (

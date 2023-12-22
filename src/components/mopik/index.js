@@ -2,36 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { WriteCommentAndViews } from "./social";
 import { BlockAvatar } from "../blockAvatar";
+import { getMopik } from "../../api/services/mopiks";
+
+
 
 export const Mopik = ({ id, text, countView }) => {
-    // const [isBlockInView, setIsBlockInView] = useState(false);
     const [nextView, setNextView] = useState(false)
     const [tapCount, setTapCount] = useState(0);
     const [idTimeout, setIdTimeout] = useState(undefined)
-
-    // const blockRef = useRef(null);
-
-    // useEffect(() => {
-    //     window.addEventListener('scroll', handleScroll);
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     }
-    // }, []);
-
-    // const handleScroll = () => {
-    //     if (isInViewPort(blockRef.current)) {
-    //         setIsBlockInView(true);
-    //     }
-    // }
-
-    // const isInViewPort = (element) => {
-    //     const rect = element.getBoundingClientRect();
-    //     return rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
-    // }
-
-    // useEffect(() => {
-    //     if (isBlockInView) return console.log(id)
-    // }, [isBlockInView])
+    const [data, setData] = useState({
+        isLoading: true,
+        mopik: {}
+    })
 
     const blockRef = useRef(null);
 
@@ -78,6 +60,15 @@ export const Mopik = ({ id, text, countView }) => {
         if (tapCount >= 1) {
             // Выполняем необходимое действие
             setNextView(!nextView)
+            if (nextView) {
+                getMopik({ _id: id })
+                    .then(res => {
+                        console.log(res)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            }
             // Сбрасываем счетчик тапов
             clearTimeout(idTimeout)
             return setTapCount(0);
@@ -92,13 +83,15 @@ export const Mopik = ({ id, text, countView }) => {
     return (
         <div className={style.mopik} id={id} ref={blockRef}>
             <div className={style.data} style={nextView ? { borderRadius: "10px 0px 0px 10px" } : null}>
+
                 <div className={style.written} onClick={() => handleTap()}>
                     {/* <p className={style.title}>{title}</p> */}
                     <p className={style.text}>{text}</p>
                 </div>
+
                 {nextView ? (
                     <>
-                        <BlockAvatar />
+                        <BlockAvatar name={`data.mopik`} />
                         <div className={style.social}>
 
                             <WriteCommentAndViews />

@@ -52,7 +52,7 @@ export const getAllMopik = async () => {
     }
 }
 
-export const getMopikS = async ({ start, count }) => {
+export const getNoteS = async ({ start, count }) => {
     try {
         const mopik = await $api.get(`/api/v1/notes/`, {
             params: {

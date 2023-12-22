@@ -3,7 +3,6 @@ import { AuthModule } from '../../components/Auth';
 import { refreshTokens } from '../../store/authorization/auth.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserMe } from '../../store/user/user.slice';
-import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
 

@@ -10,7 +10,6 @@ import { PageProfile } from "./pages/Profile";
 import { PageNotes } from "./pages/Notes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import { getMopikS } from "./api/services/mopik";
 
 const router = createBrowserRouter([
   {

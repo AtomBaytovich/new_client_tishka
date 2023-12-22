@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { createMopik, getMopik, putMopik } from '../../api/services/mopik';
+import { createMopik, getMopik, putMopik } from '../../api/services/notes.js';
 // Создаем асинхронный Thunk для выполнения запроса на сервер
 export const createNote = createAsyncThunk(
     'note/createNote',

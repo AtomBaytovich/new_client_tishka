@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Mopik } from "../../mopik";
 import style from "./style.module.scss";
-import { clear, getNoteS } from "../../../store/notes/notes.slice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SkeletonLoading } from "../../pageNotes/skeleton";
+import { getMopikS, clear } from "../../../store/mopiks/mopiks.slice";
 
 export const ListMopiks = () => {
-    const state = useSelector(state => state.noteS0);
+    const state = useSelector(state => state.mopikS0);
     const dispatch = useDispatch();
     let didInit = false;
 
     useEffect(() => {
         if (didInit == false) {
             didInit = true;
-            dispatch(getNoteS({ start: 0, count: 30 }))
+            dispatch(getMopikS({ start: 0, count: 40 }))
         }
         return () => {
             dispatch(clear())
@@ -26,7 +26,7 @@ export const ListMopiks = () => {
         if (scrollBottom) {
             if (state.data.remainingItems > 0 && state.isLoading == false) {
                 dispatch(
-                    getNoteS({ start: state.data.mopiks.length, count: 30 })
+                    getMopikS({ start: state.data.mopiks.length, count: 40 })
                 )
             }
         }

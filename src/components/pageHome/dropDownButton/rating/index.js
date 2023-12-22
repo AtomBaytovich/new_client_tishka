@@ -4,7 +4,6 @@ import style from "./style.module.scss";
 
 
 export const TopDropDown = ({ data }) => {
-    console.log(data)
     let list = data.map((el) => {
         return (<StringRating name={el.name} key={el.id} isFirst={el.isFirst} />)
     })
