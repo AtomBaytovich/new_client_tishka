@@ -18,8 +18,30 @@ export const getMopikS = async ({ start, count }) => {
 
 export const getMopik = async ({ _id }) => {
     try {
-        const data = await $api.get(`/api/v1/mopiks/${_id}`, {
+        const data = await $api.get(`/api/v1/mopiks/${_id}`, {})
+        return data.data;
+    } catch (error) {
+        console.log(error)
+        if (error?.response?.data) throw error?.response?.data;
+        throw error;
+    }
+}
 
+export const putLikeMopik = async ({ _id }) => {
+    try {
+        const data = await $api.put(`/api/v1/mopiks/${_id}/like`)
+        return data.data;
+    } catch (error) {
+        console.log(error)
+        if (error?.response?.data) throw error?.response?.data;
+        throw error;
+    }
+}
+
+export const postCommentMopik = async ({ _id, text }) => {
+    try {
+        const data = await $api.post(`/api/v1/mopiks/${_id}/comment`, {
+            text
         })
         return data.data;
     } catch (error) {
@@ -28,3 +50,4 @@ export const getMopik = async ({ _id }) => {
         throw error;
     }
 }
+

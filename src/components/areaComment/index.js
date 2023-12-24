@@ -2,13 +2,12 @@ import { useRef, useState } from "react";
 import { PencilEmoji } from "../assets/emoji/pencil";
 import style from "./style.module.scss";
 
-export const TextareaComment = ({ backgroundColor, placeholder = "Обсудим?", icon = <PencilEmoji />, minHeight, maxHeight }) => {
-    const [value, setValue] = useState(undefined)
+export const TextareaComment = ({ backgroundColor, placeholder = "Обсудим?", icon = <PencilEmoji />, minHeight, maxHeight, onSubmit }) => {
     const inputRef = useRef(null);
 
     const getValue = () => {
         const value = inputRef.current.innerText;
-        console.log(value);
+        return value;
     };
 
     return (
@@ -22,7 +21,7 @@ export const TextareaComment = ({ backgroundColor, placeholder = "Обсудим
                 style={{ backgroundColor: backgroundColor ? backgroundColor : null, minHeight, maxHeight }}
             >
             </div>
-            <div className={style.searchIcon} onClick={() => getValue()}>{icon}</div>
+            <div className={style.searchIcon} onClick={() => onSubmit(getValue())}>{icon}</div>
         </div>
     )
 }
