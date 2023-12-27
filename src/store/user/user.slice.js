@@ -11,7 +11,7 @@ export const getUserMe = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        isLoading: false,
+        isLoading: true,
         error: undefined,
         user: {}
     },
@@ -21,6 +21,9 @@ const userSlice = createSlice({
             state.error = undefined;
             state.user = {};
         },
+        stopLoading: (state) => {
+            state.isLoading = false;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -40,6 +43,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { clearUser } = userSlice.actions;
+export const { clearUser, stopLoading } = userSlice.actions;
 
 export default userSlice.reducer;

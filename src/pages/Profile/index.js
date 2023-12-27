@@ -1,10 +1,14 @@
+import { useParams } from "react-router-dom";
 import { Header } from "../../components/header";
-import { Mopik } from "../../components/mopik";
 import { CardMain } from "../../components/pageProfile/cardMain";
 import { MyTopDropDown } from "../../components/pageProfile/myTop";
 import { SelectMopiks } from "../../components/pageProfile/selectMopiks";
 import { StataDropDown } from "../../components/pageProfile/statistics";
 import style from "./style.module.scss";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Loader } from "../../components/loader";
+import { getProfile } from "../../api/services/profile";
 
 const dataRatingUser = [
     { name: "немо 3", id: 3, isFirst: false, avatar: "" },
@@ -20,6 +24,56 @@ const dataRatingUser = [
 ]
 
 export const PageProfile = () => {
+    const stateAuth = useSelector((state) => state.auth);
+    const stateUser = useSelector((state) => state.user);
+
+    const [data, setData] = useState({
+        isLoading: true,
+        isError: undefined,
+        user: {},
+        isI: undefined
+    })
+    const params = useParams();
+
+    useEffect(() => {
+        const nemo = params.nemo;
+        console.log(stateUser)
+        if (stateUser.isLoading == false) {
+            if (nemo == stateUser.user?.nickname?.main) {
+                return setData(v => ({
+                    ...v,
+                    isLoading: false,
+                    isError: undefined,
+                    user: stateUser.user,
+                    isI: true
+                }))
+            }
+            getProfile({ nickname: nemo })
+                .then(res => {
+                    console.log(res)
+                    setData(v => ({
+                        ...v,
+                        isLoading: false,
+                        isError: undefined,
+                        user: res.user,
+                        isI: false
+                    }))
+                })
+                .catch(err => {
+                    console.log(err)
+                    setData(v => ({
+                        ...v,
+                        isLoading: false,
+                        isError: v,
+                        user: {},
+                        isI: false
+                    }))
+                })
+        }
+    }, [stateAuth.isLoading, stateUser.isLoading, params.nemo])
+
+    if (stateAuth.isLoading || data.isLoading) return <Loader />
+
     return (
         <div className={style.wrapper}>
             <Header />
@@ -29,8 +83,8 @@ export const PageProfile = () => {
                     <StataDropDown />
                 </div>
                 <div className={style.lenta}>
-                    <CardMain />
-                    <SelectMopiks/>
+                    <CardMain nemo={data.user.nickname.main} data={data} />
+                    <SelectMopiks />
                 </div>
             </div>
         </div>

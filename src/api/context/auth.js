@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { AuthModule } from '../../components/Auth';
 import { refreshTokens } from '../../store/authorization/auth.slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserMe } from '../../store/user/user.slice';
+import { getUserMe, stopLoading } from '../../store/user/user.slice';
 
 export const AuthContext = createContext();
 
@@ -13,11 +13,11 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         // if (stateAuth.isAuthenticated) {
-            dispatch(refreshTokens())
-                .unwrap()
-                .then(res => {
-                    dispatch(getUserMe())
-                }).catch(err => console.log(err))
+        dispatch(refreshTokens())
+            .unwrap()
+            .then(res => {
+                dispatch(getUserMe())
+            }).catch(err => dispatch(stopLoading()))
         // }
     }, [])
 

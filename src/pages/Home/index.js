@@ -33,10 +33,10 @@ export const PageHome = () => {
                 <TopDropDown data={dataRatingUser} />
                 <div className={style.lenta}>
                     <div className={style.otboynik}>
-                        <div className={style.searchWriteBar}>
+                        {/* <div className={style.searchWriteBar}>
                             <SearchInput />
                             <WriteButton />
-                        </div>
+                        </div> */}
                         <ListMopiks />
                     </div>
                 </div>

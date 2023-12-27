@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     element: <PageHome />
   },
   {
-    path: "/:nemoid",
+    path: "/:nemo",
     element: <PageProfile />
   }
 ]);
