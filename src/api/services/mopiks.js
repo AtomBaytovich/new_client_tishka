@@ -1,11 +1,12 @@
 import $api from "../http";
 
-export const getMopikS = async ({ start, count }) => {
+export const getMopikS = async ({ start, count, date }) => {
     try {
         const mopik = await $api.get(`/api/v1/mopiks/`, {
             params: {
                 start,
-                count
+                count,
+                date
             }
         })
         return mopik.data;
@@ -51,3 +52,19 @@ export const postCommentMopik = async ({ _id, text }) => {
     }
 }
 
+export const getCommentsMopik = async ({ _id, start, count, date }) => {
+    try {
+        const data = await $api.get(`/api/v1/mopiks/${_id}/comments`, {
+            params: {
+                start,
+                count,
+                date
+            }
+        })
+        return data.data;
+    } catch (error) {
+        console.log(error)
+        if (error?.response?.data) throw error?.response?.data;
+        throw error;
+    }
+}

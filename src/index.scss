@@ -93,7 +93,33 @@ h6 {
 
 body {
   background-color: #504F75;
+  // background: linear-gradient(107.21deg, #2B2C4E 0%, #09091E 86.73%);
+  // background: linear-gradient(107.21deg, #2B2C4E 0%, #161636 86.73%);
+  // background: linear-gradient(107.21deg, #272846 0%, #1b1b31 86.73%);
+  // background: linear-gradient(107.21deg, #272846 0%, #1e2034 86.73%);
+  // background: url(../public/assets/bg/mmm.jpg);
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
+
+/*
+    box-shadow: rgba(36, 81, 244, 0.1) 0px 0px 2px, rgb(45 131 221 / 30%) 0px 4px 12px;
+    border: 1px solid rgb(61 32 239);
+*/
+
+/*
+    box-shadow: rgba(36, 81, 244, 0.1) 0px 0px 2px, rgb(45 131 221 / 30%) 0px 4px 12px;
+    border: 1px solid rgb(174 32 239);
+*/
+
+/*
+    border: 1px solid rgb(32 239 201 / 30%);
+    box-shadow: rgba(36, 81, 244, 0.1) 0px 0px 2px, rgba(45, 131, 221, 0.3) 0px 4px 12px;
+*/
 
 [class*="__container"] {
   padding: 0px 20px;

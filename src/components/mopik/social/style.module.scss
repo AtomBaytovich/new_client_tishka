@@ -1,6 +1,24 @@
 .social {
-    min-height: 35px;
+    // min-height: 35px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    & .list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .next {
+        cursor: pointer;
+        margin: auto;
+        color: #75BD4E;
+        font-family: Verdana;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        /* 150% */
+    }
 }

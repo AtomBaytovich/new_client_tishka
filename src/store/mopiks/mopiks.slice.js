@@ -5,7 +5,7 @@ import { getMopikS as get } from '../../api/services/mopiks';
 
 export const getMopikS = createAsyncThunk(
     'mopikS0/getMopikS',
-    async ({ start = 0, count = 40 }) => await get({ start, count })
+    async ({ start = 0, count = 40, date }) => await get({ start, count, date })
 );
 
 // Создаем slice с Redux Toolkit

@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { WriteCommentAndViews } from "./social";
 import { BlockAvatar } from "../blockAvatar";
-import { getMopik, postCommentMopik, putLikeMopik } from "../../api/services/mopiks";
+import { getCommentsMopik, getMopik, postCommentMopik, putLikeMopik } from "../../api/services/mopiks";
+import { useSelector } from "react-redux";
 
 export const Mopik = ({ id, text }) => {
     const [nextView, setNextView] = useState(false)
@@ -12,24 +13,42 @@ export const Mopik = ({ id, text }) => {
         isLoading: true,
         mopik: {}
     })
+    const [date, setDate] = useState();
+    const [comments, setComments] = useState({
+        data: [],
+        isLoading: true,
+        remainingItems: undefined,
+        totalItems: undefined,
+    })
     const textRef = useRef(null);
-
     const blockRef = useRef(null);
+    const stateAuth = useSelector((state) => state.auth);
 
-    const handleScroll = () => {
+    // const handleScroll = () => {
+    //     const block = blockRef.current;
+    //     if (block) {
+    //         const blockTop = block.getBoundingClientRect().top;
+    //         const blockBottom = block.getBoundingClientRect().bottom;
+    //         // Проверяем, находится ли блок в области видимости окна просмотра
+    //         if (blockTop < window.innerHeight && blockBottom >= 0) {
+    //             // Блок видим, выполняем нужные действия
+    //             if (blockRef.current?.isView == false) {
+    //                 blockRef.current.isView = true;
+    //             }
+    //         }
+    //     }
+    // };
+
+    const handleScroll = useCallback(() => {
         const block = blockRef.current;
-        if (block) {
-            const blockTop = block.getBoundingClientRect().top;
-            const blockBottom = block.getBoundingClientRect().bottom;
-            // Проверяем, находится ли блок в области видимости окна просмотра
-            if (blockTop < window.innerHeight && blockBottom >= 0) {
-                // Блок видим, выполняем нужные действия
-                if (blockRef.current?.isView == false) {
-                    blockRef.current.isView = true;
-                }
-            }
+        if (block && block.getBoundingClientRect().top < window.innerHeight &&
+            block.getBoundingClientRect().bottom >= 0 && !block.isView) {
+            block.isView = true;
+            console.log("посмотрел")
+            // Здесь запустите действия, когда блок видим, например, увеличение просмотров и т.д.
         }
-    };
+    }, []);
+
     useEffect(() => {
         // Добавляем обработчик события прокрутки при монтировании компонента
         window.addEventListener('scroll', handleScroll);
@@ -39,6 +58,20 @@ export const Mopik = ({ id, text }) => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    const loadingComments = ({ start, count }) => {
+        setComments((v) => ({ isLoading: true, ...v }))
+        getCommentsMopik({ _id: id, start, count, date })
+            .then(res => {
+                setComments({
+                    isLoading: false,
+                    remainingItems: res.remainingItems,
+                    totalItems: res.totalItems,
+                    data: [...comments.data, ...res.comments]
+                })
+            })
+            .catch(err => console.log(err))
+    }
 
     const handleTap = () => {
         // Увеличиваем счетчик тапов на 1
@@ -54,6 +87,8 @@ export const Mopik = ({ id, text }) => {
             // Выполняем необходимое действие
             setNextView(!nextView)
             if (nextView == false) {
+                const now = new Date()
+                setDate(now)
                 setData((v) => ({
                     ...v,
                     isLoading: true
@@ -66,6 +101,17 @@ export const Mopik = ({ id, text }) => {
                             mopik: res.mopik
                         }));
 
+                        getCommentsMopik({ _id: id, start: 0, count: 1, date: now })
+                            .then(res => {
+                                setComments({
+                                    isLoading: false,
+                                    remainingItems: res.remainingItems,
+                                    totalItems: res.totalItems,
+                                    data: res.comments
+                                })
+                            })
+                            .catch(err => console.log(err))
+
                         console.log(res)
                     })
                     .catch(err => {
@@ -75,6 +121,13 @@ export const Mopik = ({ id, text }) => {
                         }));
                         console.log(err)
                     })
+            } else {
+                setComments({
+                    data: [],
+                    isLoading: true,
+                    remainingItems: undefined,
+                    totalItems: undefined,
+                })
             }
             // Сбрасываем счетчик тапов
             clearTimeout(idTimeout)
@@ -99,9 +152,16 @@ export const Mopik = ({ id, text }) => {
     }
 
     const postComment = ({ v }) => {
+        setComments((v) => ({ isLoading: true, ...v }))
         postCommentMopik({ _id: id, text: v })
             .then(res => {
                 console.log(res)
+                setComments(v => ({
+                    isLoading: false,
+                    remainingItems: v.remainingItems += 1,
+                    totalItems: v.totalItems += 1,
+                    data: [res.comment, ...comments.data]
+                }))
             })
             .catch(err => {
                 console.log(err)
@@ -136,7 +196,16 @@ export const Mopik = ({ id, text }) => {
                     <>
                         <BlockAvatar name={data.mopik.ownerMopik.nickname.main} />
                         <div className={style.social}>
-                            <WriteCommentAndViews onSubmit={(v) => postComment({ v })} />
+                            <WriteCommentAndViews
+                                comments={comments.data}
+                                onSubmit={(v) => postComment({ v })}
+                                remainingItems={comments.remainingItems}
+                                nextCommentClick={() => {
+                                    if (comments.remainingItems > 0) {
+                                        loadingComments({ start: comments.data.length, count: 5 })
+                                    }
+                                }}
+                            />
                         </div>
                     </>
                 ) : undefined}
@@ -144,11 +213,13 @@ export const Mopik = ({ id, text }) => {
             {nextView && data.isLoading == false ? (
                 <div className={style.meta}>
                     <div className={style.like}>
-                        {data.mopik.userLiked ?
+                        {stateAuth.isAuthenticated == false && <img src="./assets/smiles/mopik/likeauth.png" alt="Сердечко" />}
+                        {(stateAuth.isAuthenticated && data.mopik.userLiked) &&
                             <img src="./assets/smiles/mopik/like.png" alt="Сердечко" onClick={() => putLike()} />
-                            :
-                            <img src="./assets/smiles/mopik/unlike.png" alt="Сердечко" onClick={() => putLike()} />
                         }
+                        {(stateAuth.isAuthenticated && data.mopik.userLiked == false) &&
+                            <img src="./assets/smiles/mopik/unlike.png" alt="Сердечко" onClick={() => putLike()} />}
+
                     </div>
                 </div>
             ) : undefined}

@@ -7,6 +7,7 @@ export const TextareaComment = ({ backgroundColor, placeholder = "Обсудим
 
     const getValue = () => {
         const value = inputRef.current.innerText;
+        inputRef.current.innerText = "";
         return value;
     };
 
