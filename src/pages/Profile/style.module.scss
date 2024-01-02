@@ -6,9 +6,10 @@
     padding-left: 20px;
     padding-right: 20px;
     align-items: center;
+
     & .block {
         width: 100%;
-        max-width: 320px;
+        // max-width: 320px;
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -16,15 +17,12 @@
 
     & .lenta {
         max-width: 620px;
+        width: 100%;
     }
 }
 
 @media (min-width: 670px) and (max-width: 1024px) {
     .razm {
-        // flex-direction: row-reverse;
-        // align-items: flex-start;
-        // justify-content: center;
-
         & .block {
             max-width: 620px;
             flex-direction: row;

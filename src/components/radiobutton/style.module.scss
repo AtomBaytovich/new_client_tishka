@@ -1,11 +1,11 @@
-.checkboxBtn {
+.radioBtn {
     display: inline-block;
-    margin: 0 5px 0 0;
+    // margin: 0 5px 0 0;
     user-select: none;
     position: relative;
 }
 
-.checkboxBtn input[type=checkbox] {
+.radioBtn input[type=radio] {
     z-index: -1;
     opacity: 0;
     display: block;
@@ -13,11 +13,11 @@
     height: 0;
 }
 
-.checkboxBtn span {
+.radioBtn span {
     color: #B7B7BD;
     display: inline-block;
     cursor: pointer;
-    padding: 6px 25px;
+    padding: 4px 22px;
     line-height: 30px;
     border: 1px solid #999;
     border-radius: 10px;
@@ -27,37 +27,36 @@
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
-    /* 171.429% */
 }
 
 /* Checked */
-.checkboxBtn input[type=checkbox]:checked+span {
-    background: #404040;
+.radioBtn input[type=radio]:checked+span {
+    background: #504F75;
 }
 
 /* Focus */
-.focused span {
+.radioBtn.focused span {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 }
 
 /* Hover */
-.checkboxBtn:hover {
+.radioBtn:hover span {
     color: #B7B7BD;
 }
 
 /* Active */
-.checkboxBtn input[type=checkbox]:active:not(:disabled)+span {
+.radioBtn input[type=radio]:active:not(:disabled)+span {
     background: #27273A;
     color: #B7B7BD;
 }
 
 /* Disabled */
-.checkboxBtn input[type=checkbox]:disabled+span {
+.radioBtn input[type=radio]:disabled+span {
     background: #27273A;
     color: #B7B7BD;
     cursor: default;
 }
 
-.checkboxBtn input[type=checkbox]:checked:disabled+span {
+.radioBtn input[type=radio]:checked:disabled+span {
     background: #27273A;
 }

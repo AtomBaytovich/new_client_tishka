@@ -50,7 +50,7 @@ export const BurgerMenu = ({ hidden = true }) => {
             stateAuth.isAuthenticated ?
               <>
                 <li>
-                  <Link to={`/${nickname}`}>{nickname}</Link>
+                  <Link reloadDocument to={`/${nickname}`}>{nickname}</Link>
                 </li>
                 <li>
                   <a

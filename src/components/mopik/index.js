@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import style from "./style.module.scss";
 import { WriteCommentAndViews } from "./social";
 import { BlockAvatar } from "../blockAvatar";
-import { getCommentsMopik, getMopik, postCommentMopik, putLikeMopik } from "../../api/services/mopiks";
+import { getCommentsMopik, getMopik, postCommentMopik, putLikeMopik, seeMopik } from "../../api/services/mopiks";
 import { useSelector } from "react-redux";
 
 export const Mopik = ({ id, text }) => {
@@ -24,27 +24,12 @@ export const Mopik = ({ id, text }) => {
     const blockRef = useRef(null);
     const stateAuth = useSelector((state) => state.auth);
 
-    // const handleScroll = () => {
-    //     const block = blockRef.current;
-    //     if (block) {
-    //         const blockTop = block.getBoundingClientRect().top;
-    //         const blockBottom = block.getBoundingClientRect().bottom;
-    //         // Проверяем, находится ли блок в области видимости окна просмотра
-    //         if (blockTop < window.innerHeight && blockBottom >= 0) {
-    //             // Блок видим, выполняем нужные действия
-    //             if (blockRef.current?.isView == false) {
-    //                 blockRef.current.isView = true;
-    //             }
-    //         }
-    //     }
-    // };
-
     const handleScroll = useCallback(() => {
         const block = blockRef.current;
         if (block && block.getBoundingClientRect().top < window.innerHeight &&
             block.getBoundingClientRect().bottom >= 0 && !block.isView) {
             block.isView = true;
-            console.log("посмотрел")
+            seeMopik({ _id: block?.id }).catch()
             // Здесь запустите действия, когда блок видим, например, увеличение просмотров и т.д.
         }
     }, []);

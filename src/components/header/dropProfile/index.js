@@ -14,7 +14,7 @@ export const ProfileDrop = ({ button }) => {
         <DropDownButton button={button} hidden={true}>
             <div className={style.drop}>
                 <div className={style.profile}>
-                    <Link to={`/${nickname}`}>{nickname}</Link>
+                    <Link reloadDocument to={`/${nickname}`}>{nickname}</Link>
                 </div>
                 <div className={style.logout}>
                     <a onClick={() => dispatch(logoutUser()).then(dispatch(clearUser()))}>Выйти</a>

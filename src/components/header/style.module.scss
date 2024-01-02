@@ -20,7 +20,18 @@
 
     & .links {
         display: none;
+
+        & li a {
+            &:hover {
+                color: #B7B7BD;
+            }
+        }
+
     }
+}
+
+.active {
+    color: #75BD4E;
 }
 
 

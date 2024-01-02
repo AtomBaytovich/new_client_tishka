@@ -1,13 +1,16 @@
 import $api from "../http";
 
-export const getMopikS = async ({ start, count, date }) => {
+export const getMopikS = async ({ start, count, date, nick, favourites }) => {
     try {
+        let params = {
+            start,
+            count,
+            date
+        }
+        if (nick) params.user = nick;
+        if (favourites) params.favourites = favourites
         const mopik = await $api.get(`/api/v1/mopiks/`, {
-            params: {
-                start,
-                count,
-                date
-            }
+            params
         })
         return mopik.data;
     } catch (error) {
@@ -61,6 +64,17 @@ export const getCommentsMopik = async ({ _id, start, count, date }) => {
                 date
             }
         })
+        return data.data;
+    } catch (error) {
+        console.log(error)
+        if (error?.response?.data) throw error?.response?.data;
+        throw error;
+    }
+}
+
+export const seeMopik = async ({ _id }) => {
+    try {
+        const data = await $api.put(`/api/v1/mopiks/${_id}/see`)
         return data.data;
     } catch (error) {
         console.log(error)

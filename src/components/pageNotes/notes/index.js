@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { addNew, clear, getNoteS, put } from "../../../store/notes/notes.slice";
 import { SkeletonLoading } from "../skeleton";
 import { MiniLoader } from "../miniLoader";
+import { RevealMeDropDown } from "../../pageCreateMopik/revealMe";
 
 
 const CardNotes = ({
@@ -76,6 +77,9 @@ const ListMopiksNotes = ({ openWriteFunc }) => {
 
     return (
         <div className={style.list} onScroll={handleScroll} ref={scrollRef} >
+            {(state.isLoading == false && state.data.mopiks.length == 0) && <>
+                <RevealMeDropDown />
+            </>}
             {state.data.mopiks.map((el) =>
                 <CardNotes
                     id={el._id}
@@ -169,10 +173,6 @@ export const Notes = () => {
             }
         }
     }, [focus, dataWrite]);
-
-    // useEffect(() => {
-    //     if(openWrite == false)
-    // }, [openWrite])
 
     useEffect(() => {
         if (openWrite && dataWrite && dataWrite.length > 0 && rulesText) {

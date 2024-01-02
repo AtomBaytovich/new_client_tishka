@@ -1,3 +1,4 @@
+import { EditProfile } from "../edit";
 import { StringInfo } from "../stringInfo";
 import style from "./style.module.scss";
 
@@ -9,7 +10,8 @@ export const CardMain = ({
     loveYear,
     loveTime,
     isZ,
-    data
+    data,
+    onClickRed = () => { }
 }) => {
     return (
         <div className={style.cardMain}>
@@ -19,7 +21,7 @@ export const CardMain = ({
                 </div>
                 <div className={style.nemo}><p>{nemo}</p></div>
                 {data.isI &&
-                    <div className={style.red}>
+                    <div className={style.red} onClick={onClickRed}>
                         <img src="/assets/notes/pencil.png" />
                     </div>
                 }

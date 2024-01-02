@@ -4,7 +4,6 @@ import { CloseEmoji } from "../assets/emoji/close";
 import { useFormik } from "formik";
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
 import { AuthContext } from "../../api/context/auth";
-import { login, registration } from "../../api/services/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, registerUser } from "../../store/authorization/auth.slice";
 import { getUserMe } from "../../store/user/user.slice";
@@ -169,6 +168,12 @@ export const AuthModule = ({ }) => {
             setOpenAuth(false)
         }
     }, [modalVisible]);
+
+    useEffect(() => {
+        return () => {
+            enableScroll()
+        }
+    })
 
     function disableScroll() {
         document.body.style.overflow = 'hidden';

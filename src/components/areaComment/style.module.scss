@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    
+
     & .textareaElement {
         cursor: text;
         border-radius: 15px 0px 0px 15px;
@@ -28,7 +28,7 @@
             width: 5px;
             color: white;
             // background-color: white;
-        }        
+        }
 
         &::placeholder {
             color: #A7A7A7;
@@ -53,6 +53,12 @@
         width: 48px;
         height: auto;
         border-radius: 0px 15px 15px 0px;
+        transition: transform 0.3s;
+
+        &:hover {
+            // background: #10102b;
+            transform: scale(1.07);
+        }
 
         &:active {
             background: #13132c;
@@ -80,4 +86,4 @@
     display: block;
     color: #aaa;
     font-family: Verdana;
-  }
+}

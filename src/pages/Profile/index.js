@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Loader } from "../../components/loader";
 import { getProfile } from "../../api/services/profile";
+import { EditProfile } from "../../components/pageProfile/edit";
 
 const dataRatingUser = [
     { name: "немо 3", id: 3, isFirst: false, avatar: "" },
@@ -26,6 +27,8 @@ const dataRatingUser = [
 export const PageProfile = () => {
     const stateAuth = useSelector((state) => state.auth);
     const stateUser = useSelector((state) => state.user);
+
+    const [modal, setModal] = useState(false)
 
     const [data, setData] = useState({
         isLoading: true,
@@ -51,6 +54,7 @@ export const PageProfile = () => {
             getProfile({ nickname: nemo })
                 .then(res => {
                     console.log(res)
+                    // if (data.user?.data?.gender) dataEdit.gender = ;
                     setData(v => ({
                         ...v,
                         isLoading: false,
@@ -71,6 +75,11 @@ export const PageProfile = () => {
                 })
         }
     }, [stateAuth.isLoading, stateUser.isLoading, params.nemo])
+    const oprZo = () => {
+        if (data.user?.data?.healthyLifestyle) {
+            return (data.user?.data?.healthyLifestyle ? "Да" : "Нет")
+        }
+    }
 
     if (stateAuth.isLoading || data.isLoading) return <Loader />
 
@@ -83,8 +92,20 @@ export const PageProfile = () => {
                     <StataDropDown />
                 </div>
                 <div className={style.lenta}>
-                    <CardMain nemo={data.user.nickname.main} data={data} />
-                    <SelectMopiks />
+                    <CardMain
+                        nemo={data.user.nickname.main}
+                        gender={data.user?.data?.gender}
+                        loveYear={data.user?.data?.timeYear}
+                        loveTime={data.user?.data?.timeDay}
+                        isZ={oprZo()}
+                        data={data}
+                        onClickRed={() => setModal(true)}
+                    />
+                    <SelectMopiks nick={data.user.nickname.main} />
+                    {modal && <EditProfile
+                        onClose={() => setModal(false)}
+                        defaultGender={data.user?.data?.gender}
+                    />}
                 </div>
             </div>
         </div>

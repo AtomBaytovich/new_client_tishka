@@ -14,7 +14,7 @@ export const ListMopiks = () => {
     useEffect(() => {
         if (didInit == false) {
             didInit = true;
-            dispatch(getMopikS({ start: 0, count: 15, date }))
+            dispatch(getMopikS({ start: 0, count: 25, date }))
         }
         return () => {
             dispatch(clear())
@@ -27,7 +27,7 @@ export const ListMopiks = () => {
         if (scrollBottom) {
             if (state.data.remainingItems > 0 && state.isLoading == false) {
                 dispatch(
-                    getMopikS({ start: state.data.mopiks.length, count: 40, date })
+                    getMopikS({ start: state.data.mopiks.length, count: 35, date })
                 )
             }
         }
@@ -53,6 +53,7 @@ export const ListMopiks = () => {
             {state.isLoading &&
                 <SkeletonLoading />
             }
+            {state.isLoading == false && state.data.mopiks == 0 && <p className={style.noObj}>Ой... а тут ничего больше пока что не осталось</p>}
         </div>
     )
 }
