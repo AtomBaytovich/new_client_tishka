@@ -29,7 +29,9 @@ export const Mopik = ({ id, text }) => {
         if (block && block.getBoundingClientRect().top < window.innerHeight &&
             block.getBoundingClientRect().bottom >= 0 && !block.isView) {
             block.isView = true;
-            seeMopik({ _id: block?.id }).catch()
+            if (stateAuth.isAuthenticated) {
+                seeMopik({ _id: block?.id }).catch()
+            }
             // Здесь запустите действия, когда блок видим, например, увеличение просмотров и т.д.
         }
     }, []);
