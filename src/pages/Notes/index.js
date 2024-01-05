@@ -3,6 +3,7 @@ import { Notes } from "../../components/pageNotes/notes";
 import style from "./style.module.scss";
 import { Loader } from "../../components/loader";
 import { useSelector } from "react-redux";
+import { PlugNotes } from "../../components/pageNotes/plugNotes";
 
 export const PageNotes = () => {
     const stateAuth = useSelector((state) => state.auth);
@@ -11,8 +12,11 @@ export const PageNotes = () => {
     return (
         <div className={style.wrapper}>
             <Header />
-            {stateAuth.isAuthenticated ? <Notes /> : <div>Авторизауйся, что пользоваться этим функционалом :)</div>}
-            
+            {stateAuth.isAuthenticated ?
+                <Notes />
+                :
+                <PlugNotes />
+            }
         </div>
     )
 }

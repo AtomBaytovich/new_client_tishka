@@ -17,7 +17,7 @@
     & .title {
         color: #FFF;
         text-align: center;
-        font-size: 19px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 500;
         line-height: 24px;
@@ -28,7 +28,7 @@
         margin-top: 16px;
         color: #FFF;
         text-align: center;
-        font-size: 16px;
+        font-size: 15px;
         font-style: normal;
         font-weight: 600;
         line-height: 30px;
@@ -43,6 +43,7 @@
         width: 315px;
         height: 251px;
         border-radius: 30px;
+        object-fit: cover;
     }
 
     & .text {
@@ -50,7 +51,7 @@
         margin-bottom: 24px;
         color: #FFF;
         text-align: center;
-        font-size: 16px;
+        font-size: 15px;
         font-style: normal;
         font-weight: 500;
         line-height: 30px;
@@ -80,19 +81,19 @@
 
 @media (min-width: 767px) {
     .sectionPurpose .title {
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .sectionPurpose .answer {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .sectionPurpose .text {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .sectionPurpose .buttonsOne {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
@@ -123,6 +124,10 @@
 
         & .volodyaTop {
             margin: 0px;
+        }
+
+        & .reversepjs {
+            flex-direction: row-reverse;
         }
 
         & .container {

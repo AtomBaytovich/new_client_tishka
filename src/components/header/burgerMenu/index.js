@@ -61,7 +61,7 @@ export const BurgerMenu = ({ hidden = true }) => {
                   >Выход</a>
                 </li>
               </> :
-              <li onClick={() => setOpenAuth(true)}><a>Аккаунт</a></li>
+              <li><Link to="/auth">Аккаунт</Link></li>
           }
         </ul>
       </div>
