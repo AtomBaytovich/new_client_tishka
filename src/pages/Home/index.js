@@ -1,28 +1,35 @@
 import { Header } from "../../components/header";
 import { TopDropDown } from "../../components/pageHome/dropDownButton/rating";
 import { RulesDropDown } from "../../components/pageHome/dropDownButton/rules";
-import { SearchInput } from "../../components/seacrhInput";
-import { WriteButton } from "../../components/pageHome/writeButton";
+
 import style from "./style.module.scss";
 import { Loader } from "../../components/loader";
 import { useSelector } from "react-redux";
 import { ListMopiks } from "../../components/pageHome/list";
-
-const dataRatingUser = [
-    { name: "немо 3", id: 3, isFirst: true, avatar: "" },
-    { name: "немо 7", id: 7, isFirst: false, avatar: "" },
-    { name: "немо 13", id: 13, isFirst: false, avatar: "" },
-    { name: "немо 1", id: 1, isFirst: false, avatar: "" },
-    { name: "немо 57", id: 57, isFirst: false, avatar: "" },
-    { name: "немо 78", id: 78, isFirst: false, avatar: "" },
-    { name: "немо 14", id: 14, isFirst: false, avatar: "" },
-    { name: "немо 86", id: 86, isFirst: false, avatar: "" },
-    { name: "немо 9", id: 9, isFirst: false, avatar: "" },
-    { name: "немо 891", id: 891, isFirst: false, avatar: "" },
-]
+import socketIOClient from 'socket.io-client';
+import { useEffect, useState } from "react";
 
 export const PageHome = () => {
     const stateAuth = useSelector((state) => state.auth);
+    const [createMopiksNow, setCreateMopiksNow] = useState([])
+
+    useEffect(() => {
+        const socket = socketIOClient(process.env.REACT_APP_HOST_SERVER);  // Укажите адрес вашего Express.js сервера
+
+        // Слушаем событие 'new record' от сервера
+        socket.on("recordCreated", (newRecord) => {
+            setCreateMopiksNow(prev => {
+                if (prev.length > 9) prev.pop();
+                return [newRecord, ...prev]
+            })
+        });
+
+        // Отключение соединения при размонтировании компонента
+        return () => {
+            socket.disconnect();
+        };
+    }, [])
+
     if (stateAuth.isLoading) return <Loader />
 
     return (
@@ -30,7 +37,7 @@ export const PageHome = () => {
             <Header />
             <div className={style.honey}>
                 <RulesDropDown />
-                <TopDropDown data={dataRatingUser} />
+                <TopDropDown data={createMopiksNow} />
                 <div className={style.lenta}>
                     <div className={style.otboynik}>
                         {/* <div className={style.searchWriteBar}>

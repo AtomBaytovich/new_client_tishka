@@ -11,18 +11,18 @@ import { Loader } from "../../components/loader";
 import { getProfile } from "../../api/services/profile";
 import { EditProfile } from "../../components/pageProfile/edit";
 
-const dataRatingUser = [
-    { name: "немо 3", id: 3, isFirst: false, avatar: "" },
-    { name: "немо 7", id: 7, isFirst: false, avatar: "" },
-    { name: "немо 13", id: 13, isFirst: false, avatar: "" },
-    { name: "немо 1", id: 1, isFirst: false, avatar: "" },
-    { name: "немо 57", id: 57, isFirst: false, avatar: "" },
-    { name: "немо 78", id: 78, isFirst: true, avatar: "" },
-    { name: "немо 14", id: 14, isFirst: false, avatar: "" },
-    { name: "немо 86", id: 86, isFirst: false, avatar: "" },
-    { name: "немо 9", id: 9, isFirst: false, avatar: "" },
-    { name: "немо 891", id: 891, isFirst: false, avatar: "" },
-]
+// const dataRatingUser = [
+//     { name: "немо 3", id: 3, isFirst: false, avatar: "" },
+//     { name: "немо 7", id: 7, isFirst: false, avatar: "" },
+//     { name: "немо 13", id: 13, isFirst: false, avatar: "" },
+//     { name: "немо 1", id: 1, isFirst: false, avatar: "" },
+//     { name: "немо 57", id: 57, isFirst: false, avatar: "" },
+//     { name: "немо 78", id: 78, isFirst: true, avatar: "" },
+//     { name: "немо 14", id: 14, isFirst: false, avatar: "" },
+//     { name: "немо 86", id: 86, isFirst: false, avatar: "" },
+//     { name: "немо 9", id: 9, isFirst: false, avatar: "" },
+//     { name: "немо 891", id: 891, isFirst: false, avatar: "" },
+// ]
 
 export const PageProfile = () => {
     const stateAuth = useSelector((state) => state.auth);
@@ -40,7 +40,7 @@ export const PageProfile = () => {
 
     useEffect(() => {
         const nemo = params.nemo;
-        console.log(stateUser)
+        // console.log(stateUser)
         if (stateUser.isLoading == false) {
             if (nemo == stateUser.user?.nickname?.main) {
                 return setData(v => ({
@@ -53,7 +53,7 @@ export const PageProfile = () => {
             }
             getProfile({ nickname: nemo })
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     // if (data.user?.data?.gender) dataEdit.gender = ;
                     setData(v => ({
                         ...v,
@@ -68,7 +68,7 @@ export const PageProfile = () => {
                     setData(v => ({
                         ...v,
                         isLoading: false,
-                        isError: v,
+                        isError: err,
                         user: {},
                         isI: false
                     }))
@@ -82,32 +82,37 @@ export const PageProfile = () => {
     }
 
     if (stateAuth.isLoading || data.isLoading) return <Loader />
+    // if (data.isError?.response?.status == 404) return <p>Not found</p>
 
     return (
         <div className={style.wrapper}>
             <Header />
-            <div className={style.razm}>
-                <div className={style.block}>
-                    <MyTopDropDown data={dataRatingUser} />
-                    <StataDropDown />
+            {data.isError?.response?.status == 404 ? <p>Такой страницы не существует</p>
+                :
+                <div className={style.razm}>
+                    <div className={style.block}>
+                        {/* <MyTopDropDown data={dataRatingUser} /> */}
+                        <StataDropDown />
+                    </div>
+                    <div className={style.lenta}>
+                        <CardMain
+                            nemo={data.user.nickname.main}
+                            gender={data.user?.data?.gender}
+                            loveYear={data.user?.data?.timeYear}
+                            loveTime={data.user?.data?.timeDay}
+                            isZ={oprZo()}
+                            data={data}
+                            onClickRed={() => setModal(true)}
+                        />
+                        <SelectMopiks nick={data.user.nickname.main} />
+                        {modal && <EditProfile
+                            onClose={() => setModal(false)}
+                            defaultGender={data.user?.data?.gender}
+                        />}
+                    </div>
                 </div>
-                <div className={style.lenta}>
-                    <CardMain
-                        nemo={data.user.nickname.main}
-                        gender={data.user?.data?.gender}
-                        loveYear={data.user?.data?.timeYear}
-                        loveTime={data.user?.data?.timeDay}
-                        isZ={oprZo()}
-                        data={data}
-                        onClickRed={() => setModal(true)}
-                    />
-                    <SelectMopiks nick={data.user.nickname.main} />
-                    {modal && <EditProfile
-                        onClose={() => setModal(false)}
-                        defaultGender={data.user?.data?.gender}
-                    />}
-                </div>
-            </div>
+            }
+
         </div>
     )
 }

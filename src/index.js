@@ -31,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/:nemo",
     element: <PageProfile />
+  },
+  {
+    path: "*",
+    element: <p>Not found</p>
   }
 ]);
 

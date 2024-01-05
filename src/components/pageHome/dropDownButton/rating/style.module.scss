@@ -7,13 +7,24 @@
     background: #383752;
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.28));
     border-radius: 15px;
+
+    & .nikto {
+        color: #b5b5b5;
+        font-family: Montserrat Alternates;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+    }
 }
 
-@media (min-width: 767px) { 
+@media (min-width: 767px) {
     .rating {
         gap: 16px;
         padding: 16px;
     }
+
     .stringRating {
         & p {
             font-size: 17px;
