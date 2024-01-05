@@ -60,6 +60,15 @@
             align-items: center;
             justify-content: space-between;
 
+            & .lvl_ru {
+                display: flex;
+                gap: 6px;
+
+                & p:last-child {
+                    color: #75BD4E;
+                }
+            }
+
             & img {
                 width: 28px;
                 height: 28px;
