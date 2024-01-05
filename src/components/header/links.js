@@ -29,7 +29,7 @@ export const Links = () => {
                         }
                     />
                 </li> :
-                <li onClick={() => setOpenAuth(true)}><a>Аккаунт</a></li>
+                <li><Link to="/auth" style={currentUrl === "/auth" ? { color: "#75BD4E" } : {}}>Аккаунт</Link></li>
         }
         <li><Link to="/about" style={currentUrl === "/about" ? { color: "#404040" } : {}}>О нас</Link></li>
     </>

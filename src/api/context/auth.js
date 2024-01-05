@@ -12,19 +12,19 @@ export const AuthProvider = ({ children }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // if (stateAuth.isAuthenticated) {
         dispatch(refreshTokens())
             .unwrap()
-            .then(res => {
+            .then(() => {
                 dispatch(getUserMe())
-            }).catch(err => dispatch(stopLoading()))
-        // }
+            }).catch(err => {
+                dispatch(stopLoading())
+            })
     }, [])
 
     return (
         <AuthContext.Provider value={{ stateAuth, openAuth, setOpenAuth }}>
             {children}
-            {openAuth && <AuthModule />}
+            {/* {openAuth && <AuthModule />} */}
         </AuthContext.Provider>
     );
 };

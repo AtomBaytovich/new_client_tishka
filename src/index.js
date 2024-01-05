@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PageAbout } from "./pages/About";
 import { PageHome } from "./pages/Home";
 import { AuthProvider } from "./api/context/auth";
-import { PageCreateMopik } from "./pages/CreateMopik";
+import { PageAuth } from "./pages/Auth";
 import { PageProfile } from "./pages/Profile";
 import { PageNotes } from "./pages/Notes";
 import { Provider } from "react-redux";
@@ -21,8 +21,8 @@ const router = createBrowserRouter([
     element: <PageAbout />,
   },
   {
-    path: "/create-mopik",
-    element: <PageCreateMopik />
+    path: "/auth",
+    element: <PageAuth />
   },
   {
     path: "/mopiks",

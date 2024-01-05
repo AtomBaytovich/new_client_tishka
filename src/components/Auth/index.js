@@ -5,10 +5,10 @@ import { useFormik } from "formik";
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
 import { AuthContext } from "../../api/context/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, registerUser } from "../../store/authorization/auth.slice";
+import { clearError, loginUser, registerUser } from "../../store/authorization/auth.slice";
 import { getUserMe } from "../../store/user/user.slice";
 
-const sitekey = "ysc1_nv8XuOek8E8YqHayE1DNu4rmsw5DTmQKO3C9ue6J79e51060"
+const sitekey = process.env.REACT_APP_SECRET_CAPTHCA;
 
 const validate = values => {
     const errors = {};
@@ -17,12 +17,16 @@ const validate = values => {
         errors.login = "Это обязательное поле!"
     } else if (values.login.length > 30) {
         errors.login = "Не больше 30 символов"
+    } else if (values.login.length < 8) {
+        errors.login = "Не меньше 8 символов"
     }
 
     if (!values.password) {
         errors.password = "Это обязательное поле!"
-    } else if (values.login.length > 30) {
+    } else if (values.password.length > 30) {
         errors.password = "Не больше 30 символов"
+    } else if (values.password.length < 8) {
+        errors.password = "Не меньше 8 символов"
     }
 
     if (!values.tokenCaptcha) {
@@ -38,10 +42,14 @@ const Form = ({ modeReg }) => {
     const [visible, setVisible] = useState(false);
     const state = useSelector(state => state.auth)
     const dispatch = useDispatch();
+    const [resetCaptcha, setResetCaptcha] = useState(0);
 
+    const handleReset = () => setResetCaptcha((prev) => prev + 1);
     const handleChallengeHidden = useCallback(() => setVisible(false), []);
+    const handleButtonClick = () => {
+        setVisible(true);
+    }
 
-    const handleButtonClick = () => setVisible(true);
     const formik = useFormik({
         initialValues: {
             login: '',
@@ -57,8 +65,12 @@ const Form = ({ modeReg }) => {
                     password: values.password,
                     captcha: values.tokenCaptcha
                 }))
-                    .then(res => dispatch(getUserMe()))
-                    .catch(err => console.log(err))
+                    .unwrap()
+                    .then(() => dispatch(getUserMe()))
+                    .catch(err => {
+                        handleReset()
+                        console.log(err)
+                    })
 
             } else {
                 dispatch(loginUser({
@@ -66,15 +78,25 @@ const Form = ({ modeReg }) => {
                     password: values.password,
                     captcha: values.tokenCaptcha
                 }))
-                    .then(res => dispatch(getUserMe()))
-                    .catch(err => console.log(err))
+                    .unwrap()
+                    .then(() => dispatch(getUserMe()))
+                    .catch(err => {
+                        handleReset()
+                        console.log(err)
+                    })
             }
         },
     });
 
+    useEffect(() => {
+        return () => dispatch(clearError())
+    }, [])
+
     return (
         <form onSubmit={formik.handleSubmit} className={style.form}>
-            {state.error ? (<div>{state.error}</div>) : <></>}
+            {/* <div> */}
+            {state.isLoadingAuth === false && state.error ? (<p className={style.error}>{state.error}</p>) : <></>}
+            {state.isLoadingAuth && <p className={style.loading}>Загрузка...</p>}
             <div className={style.lvl}>
                 <label htmlFor="login">ИМЯ ПОЛЬЗОВАТЕЛЯ</label>
                 <input
@@ -86,7 +108,7 @@ const Form = ({ modeReg }) => {
                     value={formik.values.login}
                 />
                 {formik.touched.login && formik.errors.login ? (
-                    <div className={style.error}>{formik.errors.login}</div>
+                    <p className={style.error}>{formik.errors.login}</p>
                 ) : null}
             </div>
 
@@ -110,6 +132,7 @@ const Form = ({ modeReg }) => {
                     type="radio"
                     id="notii"
                     name="isChangeII"
+                    onBlur={formik.handleBlur}
                     onClick={handleButtonClick} />
                 <label for="notii">Я НЕ РОБОТ/КИБОРГ/ИИ</label>
             </div>
@@ -120,13 +143,18 @@ const Form = ({ modeReg }) => {
             <InvisibleSmartCaptcha
                 hideShield={true}
                 sitekey={sitekey}
+                key={resetCaptcha}
                 onSuccess={(t) => formik.values.tokenCaptcha = t}
                 onChallengeHidden={handleChallengeHidden}
                 visible={visible}
                 webview={true}
             />
+            {/* </div> */}
 
-            <button type="submit" className={style.button}><p>Войти</p></button>
+            <button type="submit" className={style.button} disabled={state.isLoadingAuth}>
+                {modeReg ? <p>Регистрация</p> : <p>Войти</p>}
+            </button>
+
         </form>
     );
 };
@@ -186,25 +214,27 @@ export const AuthModule = ({ }) => {
     return (
         <>
             {/* {modalVisible ? <></> : */}
-            {stateAuth.isAuthenticated == false && (
-                <div className={style.shadow} >
-                    <div className={style.main}>
-                        <div className={style.close} onClick={() => setModalVisible(false)}>
-                            <CloseEmoji />
-                        </div>
-                        <div className={style.mode}>
-                            <img src="./assets/main/blue-nemo-tishka.png" alt="Тишка И Немо - привет" />
-                            <ChoiceMode modeReg={modeReg} setModeReg={setModeReg} />
-                        </div>
-                        <div className={style.form}>
-                            <p className={style.modeP}>
-                                {modeReg ? "Регистрация" : "Вход"}
-                            </p>
-                            <Form modeReg={modeReg} />
-                        </div>
-                    </div>
-                </div >
-            )}
+            {/* {stateAuth.isAuthenticated == false && ( */}
+            {/* <div className={style.shadow} > */}
+            {/* <div className={style.skeleton}> */}
+            <div className={style.main}>
+                {/* <div className={style.close} onClick={() => setModalVisible(false)}>
+                                <CloseEmoji />
+                            </div> */}
+                <div className={style.mode}>
+                    <img src="./assets/main/blue-nemo-tishka.png" alt="Тишка И Немо - привет" />
+                    <ChoiceMode modeReg={modeReg} setModeReg={setModeReg} />
+                </div>
+                <div className={style.form}>
+                    <p className={style.modeP}>
+                        {modeReg ? "Регистрация" : "Вход"}
+                    </p>
+                    <Form modeReg={modeReg} />
+                </div>
+            </div>
+            {/* </div> */}
+            {/* </div > */}
+            {/* )} */}
 
             {/* } */}
         </>

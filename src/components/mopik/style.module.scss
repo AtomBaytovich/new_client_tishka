@@ -33,7 +33,7 @@
 
 .mopik {
     display: flex;
-    min-height: 70px;
+    // min-height: 70px;
     justify-content: space-between;
     user-select: none;
 
@@ -71,6 +71,7 @@
             & .text {
                 cursor: pointer;
                 white-space: pre-line;
+                word-break: break-word;
                 color: #B7B7BD;
                 font-family: Verdana;
                 font-size: 14px;
