@@ -1,7 +1,12 @@
+import { formatNumber } from "../../../utils/nubmer";
 import { Card } from "../card";
 import style from "./style.module.scss";
 
-export const SectionWork = () => {
+export const SectionWork = ({
+    countUsers,
+    countView,
+    countMopiks
+}) => {
     return (
         <section className={style.sectionWork}>
             <div className={style.title}>
@@ -21,21 +26,21 @@ export const SectionWork = () => {
                     <div className={style.list}>
                         <Card backgroundColor="#41495F" width={"150px"} height={"150px"}>
                             <div className={style.card}>
-                                <p>150</p>
+                                <p>{formatNumber(countMopiks)}</p>
                                 <p>мопиков</p>
                             </div>
                         </Card>
 
                         <Card backgroundColor="#41495F" width={"150px"} height={"150px"}>
                             <div className={style.card}>
-                                <p>17</p>
+                                <p>{formatNumber(countUsers)}</p>
                                 <p>юзеров</p>
                             </div>
                         </Card>
 
                         <Card backgroundColor="#41495F" width={"150px"} height={"150px"}>
                             <div className={style.card}>
-                                <p>365</p>
+                                <p>{formatNumber(countView)}</p>
                                 <p>просмотров</p>
                             </div>
                         </Card>
