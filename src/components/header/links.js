@@ -11,10 +11,10 @@ const ButtonOpenProfile = ({ className, text }) => {
 }
 
 export const Links = () => {
-    const { stateAuth, setOpenAuth } = useContext(AuthContext);
+    const { stateAuth } = useContext(AuthContext);
     const location = useLocation();
     const currentUrl = location.pathname;
-    console.log(currentUrl);
+    // console.log(currentUrl);
     const user = useSelector(state => state.user);
     const nickname = user?.user?.nickname?.main
     return <>

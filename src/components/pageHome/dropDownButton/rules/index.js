@@ -30,8 +30,9 @@ export const RulesDropDown = () => {
                         <p>Если понравился проектом, то поделись им </p>
                     </div>
                 </div>
-                
-                <p className={style.ruleLearn}>Читать дальше</p>
+
+                <a href="https://t.me/pk_tih"><p className={style.ruleLearn}>Читать дальше</p></a>
+
             </div>
         </DropDownButton>
     )

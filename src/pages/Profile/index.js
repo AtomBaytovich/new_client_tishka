@@ -15,7 +15,7 @@ import { getStataProfile } from "../../api/services/stata";
 export const PageProfile = () => {
     const stateAuth = useSelector((state) => state.auth);
     const stateUser = useSelector((state) => state.user);
-
+    const [stata, setStata] = useState({})
     const [modal, setModal] = useState(false)
 
     const [data, setData] = useState({
@@ -32,7 +32,15 @@ export const PageProfile = () => {
         if (stateUser.isLoading == false) {
             getStataProfile({ nickname: nemo })
                 .then(res => {
-                    console.log(res)
+                    console.log(res.data)
+                    const data = res.data;
+                    setStata({
+                        dateReg: data.userCreatedAt,
+                        countMopiks: data.countMopiks,
+                        countViewMopiks: data.countView,
+                        firstDateMopik: data.firstMopikDate,
+                        lastDateMopik: data.lastMopikDate
+                    })
                 })
                 .catch(err => {
                     console.log(err)
@@ -83,7 +91,13 @@ export const PageProfile = () => {
                 :
                 <div className={style.razm}>
                     <div className={style.block}>
-                        <StataDropDown />
+                        <StataDropDown 
+                            dateReg={stata?.dateReg}
+                            countMopiks={stata?.countMopiks}
+                            countViewMopiks={stata?.countViewMopiks}
+                            firstDateMopik={stata?.firstDateMopik}
+                            lastDateMopik={stata?.lastDateMopik}
+                        />
                     </div>
                     <div className={style.lenta}>
                         <CardMain

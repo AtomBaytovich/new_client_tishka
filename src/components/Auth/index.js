@@ -1,9 +1,7 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import style from "./style.module.scss";
-import { CloseEmoji } from "../assets/emoji/close";
 import { useFormik } from "formik";
 import { InvisibleSmartCaptcha } from '@yandex/smart-captcha';
-import { AuthContext } from "../../api/context/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, loginUser, registerUser } from "../../store/authorization/auth.slice";
 import { getUserMe } from "../../store/user/user.slice";
@@ -58,7 +56,7 @@ const Form = ({ modeReg }) => {
         },
         validate,
         onSubmit: values => {
-            console.log(values)
+            // console.log(values)
             if (modeReg) {
                 dispatch(registerUser({
                     login: values.login,
@@ -69,7 +67,7 @@ const Form = ({ modeReg }) => {
                     .then(() => dispatch(getUserMe()))
                     .catch(err => {
                         handleReset()
-                        console.log(err)
+                        // console.log(err)
                     })
 
             } else {
@@ -82,7 +80,7 @@ const Form = ({ modeReg }) => {
                     .then(() => dispatch(getUserMe()))
                     .catch(err => {
                         handleReset()
-                        console.log(err)
+                        // console.log(err)
                     })
             }
         },
@@ -184,18 +182,18 @@ const ChoiceMode = ({ modeReg, setModeReg }) => {
 }
 
 export const AuthModule = ({ }) => {
-    const { setOpenAuth, stateAuth } = useContext(AuthContext);
-    const [modalVisible, setModalVisible] = useState(true);
+    // const { setOpenAuth, stateAuth } = useContext(AuthContext);
+    // const [modalVisible, setModalVisible] = useState(true);
     const [modeReg, setModeReg] = useState(false);
 
-    useEffect(() => {
-        if (modalVisible) {
-            disableScroll();
-        } else {
-            enableScroll();
-            setOpenAuth(false)
-        }
-    }, [modalVisible]);
+    // useEffect(() => {
+    //     if (modalVisible) {
+    //         disableScroll();
+    //     } else {
+    //         enableScroll();
+    //         setOpenAuth(false)
+    //     }
+    // }, [modalVisible]);
 
     useEffect(() => {
         return () => {

@@ -99,7 +99,7 @@ export const Mopik = ({ id, text }) => {
                             })
                             .catch(err => console.log(err))
 
-                        console.log(res)
+                        // console.log(res)
                     })
                     .catch(err => {
                         setData((v) => ({
@@ -142,7 +142,7 @@ export const Mopik = ({ id, text }) => {
         setComments((v) => ({ isLoading: true, ...v }))
         postCommentMopik({ _id: id, text: v })
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setComments(v => ({
                     isLoading: false,
                     remainingItems: v.remainingItems += 1,

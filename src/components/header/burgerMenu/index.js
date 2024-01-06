@@ -8,7 +8,7 @@ import { logoutUser } from "../../../store/authorization/auth.slice";
 import { clearUser } from "../../../store/user/user.slice";
 
 export const BurgerMenu = ({ hidden = true }) => {
-  const { stateAuth, setOpenAuth } = useContext(AuthContext);
+  const { stateAuth } = useContext(AuthContext);
   const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);

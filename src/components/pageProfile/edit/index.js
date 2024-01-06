@@ -14,7 +14,7 @@ export const EditProfile = ({
     defaultStatus
 }) => {
     const [isLoading, setLoading] = useState(true)
-    const [text, setText] = useState(defaultStatus)
+    const [text, setText] = useState(defaultStatus ? defaultStatus : "")
     const [gender, setGender] = useState(defaultGender)
     const [timeYear, setTimeYear] = useState(defaultTimeYear)
     const [timeDay, setTimeDay] = useState(defaultTimeDay)
@@ -154,7 +154,7 @@ export const EditProfile = ({
                             >
                             </div>
                             <div className={style.ogr}>
-                                <p style={text.length >= 220 ? { color: "#ff8686" } : undefined}>{text.length}</p>/250
+                                <p style={text?.length >= 220 ? { color: "#ff8686" } : undefined}>{text.length}</p>/250
                             </div>
                         </div>
                     </div>
