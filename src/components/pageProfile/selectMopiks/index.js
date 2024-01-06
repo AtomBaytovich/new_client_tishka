@@ -121,7 +121,6 @@ export const SelectMopiks = ({ nick }) => {
                     <Mopik
                         id={el._id}
                         text={el.text}
-                        countView={el.society.viewUsers}
                         key={el._id}
                     />
                 )}
