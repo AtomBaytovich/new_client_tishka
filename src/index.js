@@ -10,6 +10,7 @@ import { PageProfile } from "./pages/Profile";
 import { PageNotes } from "./pages/Notes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -41,10 +42,12 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );

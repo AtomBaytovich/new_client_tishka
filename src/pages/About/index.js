@@ -7,6 +7,7 @@ import { SectionWhat } from "../../components/pageAbout/sectionWhat";
 import { SectionWork } from "../../components/pageAbout/sectionWork";
 import style from "./style.module.scss";
 import { getStata } from "../../api/services/stata";
+import { Helmet } from "react-helmet-async";
 
 export const PageAbout = () => {
   const [stata, setStata] = useState({
@@ -28,6 +29,9 @@ export const PageAbout = () => {
 
   return (
     <div className={style.wrapper}>
+      <Helmet>
+        <title>О нас | КТ</title>
+      </Helmet>
       <div className={style.sectionCustom}>
         <Header backgroundColor="rgba(0,0,0,0.0)" />
         <SectionHello />

@@ -10,6 +10,7 @@ import { Loader } from "../../components/loader";
 import { getProfile } from "../../api/services/profile";
 import { EditProfile } from "../../components/pageProfile/edit";
 import { getStataProfile } from "../../api/services/stata";
+import { Helmet } from "react-helmet-async";
 
 
 export const PageProfile = () => {
@@ -32,7 +33,7 @@ export const PageProfile = () => {
         if (stateUser.isLoading == false) {
             getStataProfile({ nickname: nemo })
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     const data = res.data;
                     setStata({
                         dateReg: data.userCreatedAt,
@@ -87,40 +88,50 @@ export const PageProfile = () => {
     return (
         <div className={style.wrapper}>
             <Header />
-            {data.isError?.response?.status == 404 ? <p>Такой страницы не существует</p>
+            {data.isError?.response?.status == 404 ? <>
+                <Helmet>
+                    <title>Такой страницы нет | КТ</title>
+                </Helmet>
+                <p>Такой страницы не существует</p>
+            </>
                 :
-                <div className={style.razm}>
-                    <div className={style.block}>
-                        <StataDropDown 
-                            dateReg={stata?.dateReg}
-                            countMopiks={stata?.countMopiks}
-                            countViewMopiks={stata?.countViewMopiks}
-                            firstDateMopik={stata?.firstDateMopik}
-                            lastDateMopik={stata?.lastDateMopik}
-                        />
+                <>
+                    <Helmet>
+                        <title>{data.user?.nickname?.main} | КТ</title>
+                    </Helmet>
+                    <div className={style.razm}>
+                        <div className={style.block}>
+                            <StataDropDown
+                                dateReg={stata?.dateReg}
+                                countMopiks={stata?.countMopiks}
+                                countViewMopiks={stata?.countViewMopiks}
+                                firstDateMopik={stata?.firstDateMopik}
+                                lastDateMopik={stata?.lastDateMopik}
+                            />
+                        </div>
+                        <div className={style.lenta}>
+                            <CardMain
+                                nemo={data.user.nickname.main}
+                                gender={data.user?.data?.gender}
+                                loveYear={data.user?.data?.timeYear}
+                                loveTime={data.user?.data?.timeDay}
+                                isZ={oprZo()}
+                                data={data}
+                                onClickRed={() => setModal(true)}
+                                aboutText={data.user?.data?.status}
+                            />
+                            <SelectMopiks nick={data.user.nickname.main} />
+                            {modal && <EditProfile
+                                onClose={() => setModal(false)}
+                                defaultGender={data.user?.data?.gender}
+                                defaultTimeDay={data.user?.data?.timeDay}
+                                defaultTimeYear={data.user?.data?.timeYear}
+                                defaultHealthyLifestyle={oprZo()}
+                                defaultStatus={data.user?.data?.status}
+                            />}
+                        </div>
                     </div>
-                    <div className={style.lenta}>
-                        <CardMain
-                            nemo={data.user.nickname.main}
-                            gender={data.user?.data?.gender}
-                            loveYear={data.user?.data?.timeYear}
-                            loveTime={data.user?.data?.timeDay}
-                            isZ={oprZo()}
-                            data={data}
-                            onClickRed={() => setModal(true)}
-                            aboutText={data.user?.data?.status}
-                        />
-                        <SelectMopiks nick={data.user.nickname.main} />
-                        {modal && <EditProfile
-                            onClose={() => setModal(false)}
-                            defaultGender={data.user?.data?.gender}
-                            defaultTimeDay={data.user?.data?.timeDay}
-                            defaultTimeYear={data.user?.data?.timeYear}
-                            defaultHealthyLifestyle={oprZo()}
-                            defaultStatus={data.user?.data?.status}
-                        />}
-                    </div>
-                </div>
+                </>
             }
 
         </div>

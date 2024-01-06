@@ -53,7 +53,6 @@ const noteSlice = createSlice({
                 state.isLoading = false;
                 state.error = undefined;
                 state.mopik = action.payload.mopik;
-                console.log(action.payload.mopik)
             })
             .addCase(getNote.rejected, (state, action) => {
                 state.isLoading = false;

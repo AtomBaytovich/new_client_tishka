@@ -23,7 +23,7 @@ export const SelectMopiks = ({ nick }) => {
             if (typeM == "Избранное") params.favourites = true;
             getMopikS(params)
                 .then(res => {
-                    console.log(res)
+                    // console.log(res)
                     setState({
                         isLoading: false,
                         isError: undefined,
@@ -69,7 +69,7 @@ export const SelectMopiks = ({ nick }) => {
                 if (typeM == "Избранное") params.favourites = true;
                 getMopikS(params)
                     .then(res => {
-                        console.log(res)
+                        // console.log(res)
                         setState({
                             isLoading: false,
                             isError: undefined,

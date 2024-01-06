@@ -5,7 +5,7 @@ import style from "./style.module.scss";
 import { useNavigate } from 'react-router-dom';
 import { Loader } from "../../components/loader";
 import { useEffect } from "react";
-
+import { Helmet } from "react-helmet-async";
 
 export const PageAuth = () => {
     const stateAuth = useSelector((state) => state.auth);
@@ -21,6 +21,9 @@ export const PageAuth = () => {
 
     return (
         <div className={style.wrapper}>
+            <Helmet>
+                <title>Авторизация | КТ</title>
+            </Helmet>
             <Header />
             <div className={`${style.main} ${style.fadeIn}`}>
                 <AuthModule />

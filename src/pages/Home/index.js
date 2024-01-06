@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { ListMopiks } from "../../components/pageHome/list";
 import socketIOClient from 'socket.io-client';
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 export const PageHome = () => {
     const stateAuth = useSelector((state) => state.auth);
@@ -32,6 +33,9 @@ export const PageHome = () => {
 
     return (
         <div className={style.wrapper}>
+            <Helmet>
+                <title>Просмотр мопиков | КТ</title>
+            </Helmet>
             <Header />
             <div className={style.honey}>
                 <RulesDropDown />

@@ -11,7 +11,7 @@ export const WriteCommentAndViews = ({
     remainingItems
 }) => {
     const stateAuth = useSelector((state) => state.auth);
-    let list = comments.map((el, idx) =>
+    let list = comments.map((el) =>
         <Comment text={el.text} name={el.user.nickname} key={el._id} />
     )
     return (

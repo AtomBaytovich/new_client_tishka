@@ -14,8 +14,7 @@ export const DropDownButton = ({
     hidden = false, 
     text, 
     button = <ButtonDropDown text={text} />, 
-    className = undefined, 
-    
+    className = undefined
 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
