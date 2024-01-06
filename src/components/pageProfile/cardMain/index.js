@@ -1,4 +1,3 @@
-import { EditProfile } from "../edit";
 import { StringInfo } from "../stringInfo";
 import style from "./style.module.scss";
 
@@ -32,6 +31,7 @@ export const CardMain = ({
                     altImg="О себе картинка"
                     title={"О себе:"}
                     text={aboutText}
+                    styles={{ "flexDirection": "column", "alignItems": "flex-start", "maxWidth": 360 }}
                 />}
                 {gender && <StringInfo
                     srcImg={"./assets/profile/пол.png"}

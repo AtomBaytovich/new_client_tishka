@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Header } from "../../components/header";
 import { CardMain } from "../../components/pageProfile/cardMain";
-import { MyTopDropDown } from "../../components/pageProfile/myTop";
 import { SelectMopiks } from "../../components/pageProfile/selectMopiks";
 import { StataDropDown } from "../../components/pageProfile/statistics";
 import style from "./style.module.scss";
@@ -10,19 +9,8 @@ import { useSelector } from "react-redux";
 import { Loader } from "../../components/loader";
 import { getProfile } from "../../api/services/profile";
 import { EditProfile } from "../../components/pageProfile/edit";
+import { getStataProfile } from "../../api/services/stata";
 
-// const dataRatingUser = [
-//     { name: "немо 3", id: 3, isFirst: false, avatar: "" },
-//     { name: "немо 7", id: 7, isFirst: false, avatar: "" },
-//     { name: "немо 13", id: 13, isFirst: false, avatar: "" },
-//     { name: "немо 1", id: 1, isFirst: false, avatar: "" },
-//     { name: "немо 57", id: 57, isFirst: false, avatar: "" },
-//     { name: "немо 78", id: 78, isFirst: true, avatar: "" },
-//     { name: "немо 14", id: 14, isFirst: false, avatar: "" },
-//     { name: "немо 86", id: 86, isFirst: false, avatar: "" },
-//     { name: "немо 9", id: 9, isFirst: false, avatar: "" },
-//     { name: "немо 891", id: 891, isFirst: false, avatar: "" },
-// ]
 
 export const PageProfile = () => {
     const stateAuth = useSelector((state) => state.auth);
@@ -42,6 +30,13 @@ export const PageProfile = () => {
         const nemo = params.nemo;
         // console.log(stateUser)
         if (stateUser.isLoading == false) {
+            getStataProfile({ nickname: nemo })
+                .then(res => {
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
             if (nemo == stateUser.user?.nickname?.main) {
                 return setData(v => ({
                     ...v,
@@ -53,8 +48,6 @@ export const PageProfile = () => {
             }
             getProfile({ nickname: nemo })
                 .then(res => {
-                    // console.log(res)
-                    // if (data.user?.data?.gender) dataEdit.gender = ;
                     setData(v => ({
                         ...v,
                         isLoading: false,
@@ -75,14 +68,13 @@ export const PageProfile = () => {
                 })
         }
     }, [stateAuth.isLoading, stateUser.isLoading, params.nemo])
+
     const oprZo = () => {
-        if (data.user?.data?.healthyLifestyle) {
-            return (data.user?.data?.healthyLifestyle ? "Да" : "Нет")
-        }
+        if (data.user?.data?.healthyLifestyle == undefined) return undefined
+        return (data.user?.data?.healthyLifestyle ? "Да" : "Нет")
     }
 
     if (stateAuth.isLoading || data.isLoading) return <Loader />
-    // if (data.isError?.response?.status == 404) return <p>Not found</p>
 
     return (
         <div className={style.wrapper}>
@@ -91,7 +83,6 @@ export const PageProfile = () => {
                 :
                 <div className={style.razm}>
                     <div className={style.block}>
-                        {/* <MyTopDropDown data={dataRatingUser} /> */}
                         <StataDropDown />
                     </div>
                     <div className={style.lenta}>
@@ -103,11 +94,16 @@ export const PageProfile = () => {
                             isZ={oprZo()}
                             data={data}
                             onClickRed={() => setModal(true)}
+                            aboutText={data.user?.data?.status}
                         />
                         <SelectMopiks nick={data.user.nickname.main} />
                         {modal && <EditProfile
                             onClose={() => setModal(false)}
                             defaultGender={data.user?.data?.gender}
+                            defaultTimeDay={data.user?.data?.timeDay}
+                            defaultTimeYear={data.user?.data?.timeYear}
+                            defaultHealthyLifestyle={oprZo()}
+                            defaultStatus={data.user?.data?.status}
                         />}
                     </div>
                 </div>

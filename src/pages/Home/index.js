@@ -15,7 +15,6 @@ export const PageHome = () => {
 
     useEffect(() => {
         const socket = socketIOClient(process.env.REACT_APP_HOST_SERVER);  // Укажите адрес вашего Express.js сервера
-
         // Слушаем событие 'new record' от сервера
         socket.on("recordCreated", (newRecord) => {
             setCreateMopiksNow(prev => {
@@ -23,7 +22,6 @@ export const PageHome = () => {
                 return [newRecord, ...prev]
             })
         });
-
         // Отключение соединения при размонтировании компонента
         return () => {
             socket.disconnect();

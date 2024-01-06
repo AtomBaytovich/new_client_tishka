@@ -46,6 +46,12 @@
         flex-direction: column;
         gap: 16px;
 
+        & .loader {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+        }
+
         & .elementBox {
             display: flex;
             flex-direction: column;
@@ -102,6 +108,8 @@
             }
 
             & .ogr {
+                display: flex;
+                align-items: center;
                 position: absolute;
                 bottom: 5px;
                 right: 12px;

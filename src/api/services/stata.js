@@ -11,3 +11,13 @@ export const getStata = async () => {
         throw error;
     }
 }
+
+export const getStataProfile = async ({ nickname }) => {
+    try {
+        const res = await axios.get(`${hostServer}/api/v1/stata/${nickname}`)
+        return res;
+    } catch (error) {
+        // console.log(error)
+        throw error;
+    }
+}

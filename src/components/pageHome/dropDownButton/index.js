@@ -9,7 +9,14 @@ export const ButtonDropDown = ({ text }) => {
     )
 }
 
-export const DropDownButton = ({ children, hidden = false, text, button = <ButtonDropDown text={text} />, className = undefined }) => {
+export const DropDownButton = ({ 
+    children, 
+    hidden = false, 
+    text, 
+    button = <ButtonDropDown text={text} />, 
+    className = undefined, 
+    
+}) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
