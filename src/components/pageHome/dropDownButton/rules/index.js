@@ -15,7 +15,7 @@ export const RulesDropDown = () => {
                     </div>
                     <div className={style.element}>
                         <img src="./assets/smiles/home/hugging.png" />
-                        <p>Старайся быть добрее! <br />Этот проект любит тебя!</p>
+                        <p>Старайся быть добрее! <br />Любим тебя!</p>
                     </div>
                     <div className={style.element}>
                         <img src="./assets/smiles/home/hidden.png" />
@@ -27,7 +27,7 @@ export const RulesDropDown = () => {
                     </div>
                     <div className={style.element}>
                         <img src="./assets/smiles/home/speaker.png" />
-                        <p>Если понравился проектом, то поделись им </p>
+                        <p>Если понравился проект, то поделись им </p>
                     </div>
                 </div>
 

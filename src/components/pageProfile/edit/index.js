@@ -154,7 +154,7 @@ export const EditProfile = ({
                             >
                             </div>
                             <div className={style.ogr}>
-                                <p style={text?.length >= 220 ? { color: "#ff8686" } : undefined}>{text.length}</p>/250
+                                <p style={text?.length >= 220 ? { color: "#ff8686" } : undefined}>{text.length}</p>/220
                             </div>
                         </div>
                     </div>

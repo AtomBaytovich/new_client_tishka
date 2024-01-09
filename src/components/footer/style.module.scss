@@ -1,18 +1,28 @@
 footer {
     display: block;
-    height: 210px;
-    align-items: center;
-    flex-shrink: 0;
+    height: 180px;
+    margin: 0 auto;
     background: #5D6887;
 
-    & p {
+    & .st {
+        margin: 0 auto;
+        max-width: 1440px;
         padding-left: 40px;
+        padding-right: 40px;
         padding-top: 40px;
-        color: #FFF;
-        font-family: Montserrat Alternates;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 900;
-        line-height: normal;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & p {
+            color: #FFF;
+            font-family: Montserrat Alternates;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: normal;
+        }
     }
+
+
 }

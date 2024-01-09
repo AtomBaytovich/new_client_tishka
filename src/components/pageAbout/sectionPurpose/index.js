@@ -12,13 +12,13 @@ export const SectionPurpose = ({
             <div className={style.title}>
                 <p>Цель этого проекта</p>
             </div>
-            <div className={`${style.container} ${reverse ? style.reversepjs: null}`}>
+            <div className={`${style.container} ${reverse ? style.reversepjs : null}`}>
                 <p className={`${style.answer} ${style.answerMob}`}>{answerMob}</p>
                 <img className={style.volodyaTop} src={img} alt="Володя реально топ подписывайтесь https://t.me/atom_baytovich" />
                 <div className={style.miniCont}>
                     <p className={`${style.answer} ${style.answerPk}`}>{answerMob}</p>
                     <p className={`${style.text} text__container`}>{text}</p>
-                    <Button className={style.custom}><p className={style.buttonsOne}>Присоединиться</p></Button>
+                    <Button className={style.custom}><a className={style.buttonsOne} href="/auth">Присоединиться</a></Button>
                 </div>
             </div>
         </section >

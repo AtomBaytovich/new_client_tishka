@@ -33,7 +33,7 @@ export const SectionWhat = () => {
                     </div>
                 </Card>
             </div>
-            <p className={`${style.whatTwo} whantTwo__container`}>Здесь ты можешь чувствовать себя в безопасности, писать свои переживания   анонимно как на весь мир, так только для себя.</p>
+            <p className={`${style.whatTwo} whantTwo__container`}>Здесь ты можешь чувствовать себя в безопасности, писать свои переживания анонимно как на весь мир, так только для себя.</p>
         </section>
     )
 }

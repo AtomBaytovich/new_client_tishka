@@ -102,6 +102,7 @@ export const Notes = () => {
     const [rulesText, setRulesText] = useState(false);
     const [dataWrite, setDataWrite] = useState("")
     const [focus, setFocus] = useState(false)
+    const [isHovered, setIsHovered] = useState(false);
     const inputRef = useRef(null);
 
     const location = useLocation();
@@ -216,12 +217,32 @@ export const Notes = () => {
         <div className={style.notes}>
             {(openWrite == true) && (
                 <div className={`${style.notSee}`}>
-                    <div onClick={() => {
-                        if (mopik.isLoading == false) closeWrite()
-                    }} className={style.back}>
-                        <BackEmoji />
+                    <div className={style.custom}>
+                        <div
+                            onClick={() => {
+                                if (mopik.isLoading == false) closeWrite()
+                            }}
+                            className={style.back}
+                        >
+                            <BackEmoji />
+                        </div>
+                        {(mopik.put.loading || mopik.isLoading == true) && <MiniLoader />}
+                        {(mopik.error) && (
+                            <div className={style.error}>
+                                <img
+                                    src="./assets/notes/warning.png"
+                                    alt="Ошибка"
+                                    onMouseEnter={() => setIsHovered(true)}
+                                    onMouseLeave={() => setIsHovered(false)}
+                                />
+                                {isHovered && (
+                                    <div className={style.errorHover}>
+                                        {mopik.error}
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
-                    {(mopik.put.loading || mopik.isLoading == true) && <MiniLoader />}
                 </div>
             )}
 
