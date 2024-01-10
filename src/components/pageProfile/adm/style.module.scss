@@ -1,0 +1,46 @@
+.adm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 8px;
+    padding: 24px;
+    background: #383752;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.28));
+    border-radius: 15px;
+
+    & .message {
+        color: #fff;
+        font-family: Montserrat Alternates;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    & .banned {
+        cursor: pointer;
+        padding: 8px;
+        text-align: center;
+        background: #5E5D88;
+        border-radius: 10px;
+
+        color: #ff8686;
+        font-family: Montserrat Alternates;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+
+        &:hover {
+            background: #4f4e81;
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    .adm {
+        gap: 16px;
+        padding: 16px;
+    }
+
+}

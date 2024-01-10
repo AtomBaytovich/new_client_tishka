@@ -11,6 +11,8 @@ import { getProfile } from "../../api/services/profile";
 import { EditProfile } from "../../components/pageProfile/edit";
 import { getStataProfile } from "../../api/services/stata";
 import { Helmet } from "react-helmet-async";
+import { MyAdminDropDown } from "../../components/pageProfile/adm";
+import { banMopiks, banUser } from "../../api/services/adm";
 
 
 export const PageProfile = () => {
@@ -18,6 +20,7 @@ export const PageProfile = () => {
     const stateUser = useSelector((state) => state.user);
     const [stata, setStata] = useState({})
     const [modal, setModal] = useState(false)
+    const [statusAdm, setStatusAdm] = useState(undefined)
 
     const [data, setData] = useState({
         isLoading: true,
@@ -83,6 +86,15 @@ export const PageProfile = () => {
         return (data.user?.data?.healthyLifestyle ? "Да" : "Нет")
     }
 
+    const oprAdm = () => {
+        if (stateUser.user?.isAdmin == true) {
+            if (data.user?._id !== stateUser.user?._id) {
+                return true
+            }
+        }
+        return false;
+    }
+
     if (stateAuth.isLoading || data.isLoading) return <Loader />
 
     return (
@@ -108,6 +120,18 @@ export const PageProfile = () => {
                                 firstDateMopik={stata?.firstDateMopik}
                                 lastDateMopik={stata?.lastDateMopik}
                             />
+                            {oprAdm() && <MyAdminDropDown
+                                onBanned={() => banUser(data.user?.nickname?.main)
+                                    .then(res => setStatusAdm(res?.message))
+                                    .catch(err => setStatusAdm(err?.response?.data?.message))
+                                }
+                                onBannedMopiks={() => banMopiks(data.user?.nickname?.main)
+                                    .then(res => setStatusAdm(res?.message))
+                                    .catch(err => setStatusAdm(err?.response?.data?.message))
+                                }
+                                isBanned={data.user?.isBanned}
+                                statusAdm={statusAdm}
+                            />}
                         </div>
                         <div className={style.lenta}>
                             <CardMain

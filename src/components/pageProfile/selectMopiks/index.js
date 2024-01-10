@@ -3,8 +3,10 @@ import { Mopik } from "../../mopik";
 import style from "./style.module.scss";
 import { getMopikS } from "../../../api/services/mopiks";
 import { SkeletonLoading } from "../../pageNotes/skeleton";
+import { useSelector } from "react-redux";
 
 export const SelectMopiks = ({ nick }) => {
+    const stateUser = useSelector((state) => state.user);
     const [typeM, setTypeM] = useState("Коллекция")
     const [state, setState] = useState({
         isLoading: true,
@@ -31,7 +33,7 @@ export const SelectMopiks = ({ nick }) => {
                     })
                 })
                 .catch(err => {
-                    console.log(err)
+                    // console.log(err)
                     setState({
                         isLoading: false,
                         isError: err,
@@ -117,14 +119,15 @@ export const SelectMopiks = ({ nick }) => {
             </div>
             <div className={style.list}>
                 {state.isLoading && <SkeletonLoading />}
-                {state.isLoading == false && state.data.mopiks.map((el) =>
+                {state.isLoading == false && state.data?.mopiks?.map((el) =>
                     <Mopik
                         id={el._id}
                         text={el.text}
                         key={el._id}
+                        isAdm={stateUser.user?.isAdmin}
                     />
                 )}
-                {(state.isLoading == false && state.data.mopiks.length == 0) && <p className={style.notObj}>Пока тут нет ничего</p>}
+                {(state.isLoading == false && state.data?.mopiks?.length == 0) && <p className={style.notObj}>Пока тут нет ничего</p>}
             </div>
         </div>
     )

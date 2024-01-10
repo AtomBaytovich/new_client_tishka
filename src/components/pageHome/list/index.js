@@ -7,6 +7,7 @@ import { getMopikS, clear } from "../../../store/mopiks/mopiks.slice";
 
 export const ListMopiks = () => {
     const state = useSelector(state => state.mopikS0);
+    const stateUser = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const [date, setDate] = useState(new Date())
     let didInit = false;
@@ -47,6 +48,7 @@ export const ListMopiks = () => {
                     id={el._id}
                     text={el.text}
                     key={el._id}
+                    isAdm={stateUser.user?.isAdmin}
                 />
             )}
             {state.isLoading &&

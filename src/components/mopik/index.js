@@ -4,8 +4,9 @@ import { WriteCommentAndViews } from "./social";
 import { BlockAvatar } from "../blockAvatar";
 import { getCommentsMopik, getMopik, postCommentMopik, putLikeMopik, seeMopik } from "../../api/services/mopiks";
 import { useSelector } from "react-redux";
+import { mootMopik } from "../../api/services/adm";
 
-export const Mopik = ({ id, text }) => {
+export const Mopik = ({ id, text, isAdm }) => {
     const [nextView, setNextView] = useState(false)
     const [tapCount, setTapCount] = useState(0);
     const [idTimeout, setIdTimeout] = useState(undefined)
@@ -206,7 +207,10 @@ export const Mopik = ({ id, text }) => {
                         }
                         {(stateAuth.isAuthenticated && data.mopik.userLiked == false) &&
                             <img src="./assets/smiles/mopik/unlike.png" alt="Сердечко" onClick={() => putLike()} />}
+                    </div>
 
+                    <div className={style.moot}>
+                        {isAdm && <img src="./assets/smiles/mopik/moot.png" alt="Мут" onClick={() => mootMopik(id).catch(err => console.log(err))} />}
                     </div>
                 </div>
             ) : undefined}
