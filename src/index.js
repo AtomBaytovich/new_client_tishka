@@ -11,6 +11,7 @@ import { PageNotes } from "./pages/Notes";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { HelmetProvider } from "react-helmet-async";
+import { PagePrivacy } from "./pages/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/mopiks",
     element: <PageHome />
+  },
+  {
+    path: "/privacy",
+    element: <PagePrivacy />
   },
   {
     path: "/:nemo",

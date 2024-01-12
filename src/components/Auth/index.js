@@ -153,6 +153,8 @@ const Form = ({ modeReg }) => {
                 {modeReg ? <p>Регистрация</p> : <p>Войти</p>}
             </button>
 
+            <a className={style.linkPolicy} href="/privacy">Политика конфиденциальности</a>
+
         </form>
     );
 };
@@ -228,6 +230,7 @@ export const AuthModule = ({ }) => {
                         {modeReg ? "Регистрация" : "Вход"}
                     </p>
                     <Form modeReg={modeReg} />
+
                 </div>
             </div>
             {/* </div> */}

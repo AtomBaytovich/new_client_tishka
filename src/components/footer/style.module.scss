@@ -1,28 +1,55 @@
 footer {
     display: block;
-    height: 180px;
+    // height: 180px;
     margin: 0 auto;
     background: #5D6887;
 
-    & .st {
+    .main {
         margin: 0 auto;
         max-width: 1440px;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        padding: 32px;
 
-        & p {
-            color: #FFF;
-            font-family: Montserrat Alternates;
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 900;
-            line-height: normal;
+        & .st {
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+
+            & .socials {
+                display: flex;
+                gap: 16px;
+            }
+
+            & p {
+                color: #FFF;
+                font-family: Montserrat Alternates;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 900;
+                line-height: normal;
+            }
+        }
+
+        & .links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 24px;
+
+            & a {
+                color: #FFF;
+                text-align: center;
+                font-family: Montserrat Alternates;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+            }
         }
     }
+
 
 
 }
