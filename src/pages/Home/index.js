@@ -38,8 +38,10 @@ export const PageHome = () => {
             </Helmet>
             <Header />
             <div className={style.honey}>
-                <RulesDropDown />
-                <TopDropDown data={createMopiksNow} />
+                <div className={style.drops}>
+                    <RulesDropDown />
+                    <TopDropDown data={createMopiksNow} />
+                </div>
                 <div className={style.lenta}>
                     <div className={style.otboynik}>
                         {/* <div className={style.searchWriteBar}>

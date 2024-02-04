@@ -10,6 +10,11 @@
     padding-left: 20px;
     padding-right: 20px;
 
+    & .drops {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
 
     & .lenta {
         display: flex;
@@ -46,14 +51,22 @@
     }
 
     .honey {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        // grid-template-rows: repeat(2, 1fr);
-        grid-row-gap: 16px;
-        grid-column-gap: 120px;
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr);
+        // // grid-template-rows: repeat(2, 1fr);
+        // grid-row-gap: 16px;
+        // grid-column-gap: 120px;
+        display: flex;
+        flex-direction: column;
 
         padding-left: 40px;
         padding-right: 40px;
+
+        & .drops {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+        }
 
         & .lenta {
             grid-area: 2 / 1 / 3 / 3;
@@ -64,17 +77,27 @@
 @media (min-width: 1024px) {
 
     .honey {
-        display: grid;
-        grid-template-columns: 25% 50% 25%;
-        grid-template-rows: 1fr;
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-
+        // display: grid;
+        // grid-template-columns: 25% 50% 25%;
+        // grid-template-rows: 1fr;
+        // grid-column-gap: 0px;
+        // grid-row-gap: 0px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
         padding-left: 16px;
         padding-right: 16px;
 
+        & .drops {
+            width: 340px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
         & .lenta {
-            grid-area: 1 / 2 / 2 / 3;
+            // grid-area: 1 / 2 / 2 / 3;
+            width: 640px;
             margin-left: 12px;
             margin-right: 12px;
         }

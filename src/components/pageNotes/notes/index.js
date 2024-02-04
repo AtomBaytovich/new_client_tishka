@@ -8,6 +8,7 @@ import { addNew, clear, getNoteS, put } from "../../../store/notes/notes.slice";
 import { SkeletonLoading } from "../skeleton";
 import { MiniLoader } from "../miniLoader";
 import { RevealMeDropDown } from "../../pageCreateMopik/revealMe";
+import { getTimeAgo } from "../../../utils/date";
 
 
 const CardNotes = ({
@@ -226,6 +227,7 @@ export const Notes = () => {
                         >
                             <BackEmoji />
                         </div>
+                        {mopik.isLoading == false && <div className={style.dateCreate}>{getTimeAgo(mopik.mopik?.createdAt)}</div>}
                         {(mopik.put.loading || mopik.isLoading == true) && <MiniLoader />}
                         {(mopik.error) && (
                             <div className={style.error}>

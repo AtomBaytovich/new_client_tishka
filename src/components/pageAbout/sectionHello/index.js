@@ -17,7 +17,7 @@ export const SectionHello = () => {
                 {/* </div> */}
                 <div className={style.buttons}>
                     <Button><a className={style.buttonsOne} href="/auth">Присоединиться</a></Button>
-                    <Button backgroundColor="#504F75"><a className={style.buttonsTwo} href="https://t.me/pk_tih">О нас</a></Button>
+                    <Button backgroundColor="#504F75"><a className={style.buttonsTwo} href="https://t.me/pk_tih">Мы в tg</a></Button>
                 </div>
             </div>
         </section >

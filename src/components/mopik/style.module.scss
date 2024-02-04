@@ -81,6 +81,21 @@
             }
         }
 
+        & .podval {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            & .dateCreate {
+                color: #B7B7BD;
+                font-family: Verdana;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+        }
+
         & .social {
             animation: slideIn 1s forwards;
             display: flex;

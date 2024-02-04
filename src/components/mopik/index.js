@@ -5,6 +5,7 @@ import { BlockAvatar } from "../blockAvatar";
 import { getCommentsMopik, getMopik, postCommentMopik, putLikeMopik, seeMopik } from "../../api/services/mopiks";
 import { useSelector } from "react-redux";
 import { mootMopik } from "../../api/services/adm";
+// import { getTimeAgo } from "../../utils/date";
 
 export const Mopik = ({ id, text, isAdm }) => {
     const [nextView, setNextView] = useState(false)
@@ -33,7 +34,7 @@ export const Mopik = ({ id, text, isAdm }) => {
             if (stateAuth.isAuthenticated) {
                 seeMopik({ _id: block?.id }).catch()
             }
-            // Здесь запустите действия, когда блок видим, например, увеличение просмотров и т.д.
+            // Здесь запусти действия, когда блок видим, например, увеличение просмотров и т.д.
         }
     }, []);
 
@@ -71,56 +72,60 @@ export const Mopik = ({ id, text, isAdm }) => {
             setIdTimeout(id)
         }
         // Если пользователь нажал дважды, совершаем действие
-        if (tapCount >= 1) {
-            // Выполняем необходимое действие
-            setNextView(!nextView)
-            if (nextView == false) {
-                const now = new Date()
-                setDate(now)
-                setData((v) => ({
-                    ...v,
-                    isLoading: true
-                }));
-                getMopik({ _id: id })
-                    .then(res => {
-                        setData((v) => ({
-                            ...v,
-                            isLoading: false,
-                            mopik: res.mopik
-                        }));
+        // if (tapCount >= 0) {
+        // Выполняем необходимое действие
+        setNextView(true)
+        if (nextView == false) {
+            const now = new Date()
+            setDate(now)
+            setData((v) => ({
+                ...v,
+                isLoading: true
+            }));
+            getMopik({ _id: id })
+                .then(res => {
+                    setData((v) => ({
+                        ...v,
+                        isLoading: false,
+                        mopik: res.mopik
+                    }));
 
-                        getCommentsMopik({ _id: id, start: 0, count: 1, date: now })
-                            .then(res => {
-                                setComments({
-                                    isLoading: false,
-                                    remainingItems: res.remainingItems,
-                                    totalItems: res.totalItems,
-                                    data: res.comments
-                                })
+                    getCommentsMopik({ _id: id, start: 0, count: 1, date: now })
+                        .then(res => {
+                            setComments({
+                                isLoading: false,
+                                remainingItems: res.remainingItems,
+                                totalItems: res.totalItems,
+                                data: res.comments
                             })
-                            .catch(err => console.log(err))
-
-                        // console.log(res)
-                    })
-                    .catch(err => {
-                        setData((v) => ({
-                            ...v,
-                            isLoading: false
-                        }));
-                        console.log(err)
-                    })
-            } else {
+                        })
+                        .catch(err => console.log(err))
+                })
+                .catch(err => {
+                    setData((v) => ({
+                        ...v,
+                        isLoading: false
+                    }));
+                    console.log(err)
+                })
+        }
+        if (nextView == true) {
+            if (tapCount >= 1) {
+                setNextView(false)
                 setComments({
                     data: [],
                     isLoading: true,
                     remainingItems: undefined,
                     totalItems: undefined,
                 })
+
+                // Сбрасываем счетчик тапов
+                clearTimeout(idTimeout)
+                return setTapCount(0);
             }
-            // Сбрасываем счетчик тапов
-            clearTimeout(idTimeout)
-            return setTapCount(0);
         }
+
+        // }
     };
 
     const putLike = () => {
@@ -182,7 +187,10 @@ export const Mopik = ({ id, text, isAdm }) => {
 
                 {nextView && data.isLoading == false ? (
                     <>
-                        <BlockAvatar name={data.mopik.ownerMopik.nickname.main} />
+                        <div className={style.podval}>
+                            <BlockAvatar name={data.mopik.ownerMopik.nickname.main} />
+                            <div className={style.dateCreate}>{/*{getTimeAgo(data.mopik?.createdAt)}*/}</div>
+                        </div>
                         <div className={style.social}>
                             <WriteCommentAndViews
                                 comments={comments.data}

@@ -17,7 +17,7 @@ export const SectionWork = ({
                     <img src="./assets/main/blue-nemo-tishka.png" alt="немо и тишка в масочках синенькие красивенькие" />
                 </div>
                 <div className={``}>
-                    <ul className={style.listMy}>
+                    <ul className={`${style.listMy}`}>
                         <li>Ты заходишь в аккаунт и можешь начинать писать мопики</li>
                         <li>Мопик - это твои мысли</li>
                         <li>Не сохраняем никаких данных о тебе</li>
