@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Компик Тишки (Tishka's Compik)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Компик Тишки](https://new-client-tishka.vercel.app/assets/main/blue-nemo-tishka.png) <!-- Замените на реальный путь к логотипу или иконке, если есть -->
 
-## Available Scripts
+**Пиши - Делись - Мечтай**
 
-In the project directory, you can run:
+"Компик Тишки" — это анонимная платформа, созданная с трепетом и любовью, чтобы вы могли делиться своими мыслями, переживаниями и эмоциями, чувствуя себя в безопасности. Здесь ты — "Немо", и я — "Немо". Проект вдохновлен желанием дать людям свободу самовыражения без страха осуждения.
 
-### `npm start`
+> "Дать возможность почувствовать себя нужным, свободным и открытым, не раскрывая при этом личности."  
+> — Цель проекта
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Что это за проект?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+"Компик Тишки" — это место, где вы можете:
+- **Выплескивать свои обиды и переживания** анонимно.
+- **Создавать "мопики"** — маленькие заметки с вашими мыслями.
+- **Читать истории других** и находить отклик в их словах.
+- **Прийти к внутреннему равновесию**, делясь сокровенным без "еб*чих мыслей" об осуждении.
 
-### `npm test`
+Проект родился из личной потребности: однажды глубокой осенью 2022 года автор захотел поделиться своими переживаниями, но не нашел подходящего способа. Так появился "Компик Тишки" — кладовая воспоминаний и эмоций для каждого.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Как это работает?
+1. Заходишь в аккаунт с логином и паролем — никаких личных данных не требуется.
+2. Пишешь "мопики" — свои мысли и чувства.
+3. Читаешь истории других, наслаждаешься и находишь покой.
+4. Всё анонимно и безопасно — мы не сохраняем никаких данных о вас.
 
-### `npm run build`
+## Технологии
+Проект состоит из двух частей:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Клиентская часть
+- **Next.js (React.js)** — современный фреймворк для быстрого и удобного фронтенда.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Серверная часть
+- **Express.js** — сервер на Node.js для обработки запросов.
+- **MongoDB** — NoSQL-база данных для хранения "мопиков".
+- **Mongoose** — библиотека для работы с MongoDB.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Статус проекта
+- **Клиент**: Развернут и доступен для просмотра: [https://new-client-tishka.vercel.app/](https://new-client-tishka.vercel.app/).
+- **Сервер**: Находится в закрытом доступе и не запущен. Код предоставлен клиентом проекта и доступен для ознакомления по запросу.
